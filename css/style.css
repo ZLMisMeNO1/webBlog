@@ -298,7 +298,6 @@ hr.small {
 .post-tags a,
 .post-categories a {
   border-bottom: 1px dotted #ababab;
-  text-transform: uppercase;
   margin-right: 10px;
 }
 .post-tags a:hover,
@@ -466,9 +465,8 @@ article .container .row .video-container embed {
 article .container .row blockquote {
   font-style: italic;
   font-family: "Georgia", serif;
-  font-size: 1.2em;
+  font-size: 0.9em;
   padding: 0 30px 15px;
-  text-align: center;
 }
 article .container .row blockquote footer {
   border-top: none;

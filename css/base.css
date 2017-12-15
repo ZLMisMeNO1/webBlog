@@ -298,7 +298,6 @@ hr.small {
 .post-tags a,
 .post-categories a {
   border-bottom: 1px dotted #ababab;
-  text-transform: uppercase;
   margin-right: 10px;
 }
 .post-tags a:hover,
