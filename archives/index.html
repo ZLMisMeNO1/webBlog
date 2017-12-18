@@ -1139,6 +1139,185 @@
 <p>通俗的理解es（elasticsearch):es是一个仓库，可以存放任何东西，我们能向仓库寄存东西，也能从仓库取东西。<br>寄存东西的时候要告诉他，物品是要存放在哪个小屋子里（index)，属于什么类型（type）的,物品的回执单可以自己写，也可以通过&gt; 仓库提供。<br>取东西的时候要告诉他，是哪个屋子里的什么类型的东西，或者更具体一点，哪个屋子中类型是啥的回执单上的字是什么的。</p>
 <p>可以按照范围获取东西，也可以统计，类似数据库。</p>
 </blockquote>
+<hr>
+<h4 id="本机测试速度"><a href="#本机测试速度" class="headerlink" title="本机测试速度"></a>本机测试速度</h4><blockquote>
+<p>本机测试33万数据可以达到毫秒级的模糊查询</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/11/30/elasticsearch/00-readme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/30/elasticsearch/00-readme/" itemprop="url">elasticsearch-文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-30T00:00:00+08:00">
+                2017-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h4 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h4><p><a href="https://www.elastic.co/" target="_blank" rel="noopener">elastic</a></p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html" target="_blank" rel="noopener">官方文档</a></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="noopener">官方中文文档</a></p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/client/index.html" target="_blank" rel="noopener">官方客户端api</a></p>
+<hr>
+<h4 id="相关中文简介以及简单操作"><a href="#相关中文简介以及简单操作" class="headerlink" title="相关中文简介以及简单操作"></a>相关中文简介以及简单操作</h4><p><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">阮一峰-全文搜索引擎 Elasticsearch 入门教程</a></p>
+<h5 id="个人理解elasticsearch术语"><a href="#个人理解elasticsearch术语" class="headerlink" title="个人理解elasticsearch术语"></a>个人理解elasticsearch术语</h5><table>
+<thead>
+<tr>
+<th>关系型数据库</th>
+<th>elasticsearch </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td>index</td>
+</tr>
+<tr>
+<td>table</td>
+<td>type</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>documents</td>
+</tr>
+</tbody>
+</table>
+<p>关于type字段</p>
+<blockquote>
+<p>Indices created in Elasticsearch 6.0.0 or later may only contain a single mapping type. Indices created in 5.x with multiple mapping types will continue to function as before in Elasticsearch 6.x. Mapping types will be completely removed in Elasticsearch 7.0.0.</p>
+<p>将会在7.0.0. 后的版本移除</p>
+</blockquote>
 
           
         
@@ -1220,7 +1399,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
