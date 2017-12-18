@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://www.i7baoz.cn/archives/"/>
+  <link rel="canonical" href="http://www.i7baoz.cn/archives/21"/>
 
 
 
 
 
-  <title>归档 | 积累</title>
+  <title>积累</title>
   
 
 
@@ -143,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -179,12 +180,22 @@
     <ul id="menu" class="menu">
       
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            所有
           </a>
         </li>
       
@@ -236,260 +247,936 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/15/bat批处理/开机自启tomcat和redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/bat批处理/开机自启tomcat和redis/" itemprop="url">开机自启动tomcat和redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:55:33+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bat/" itemprop="url" rel="index">
+                    <span itemprop="name">bat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-        
-        嗯..! 目前共计 6 篇日志。 继续努力。
-      </span>
+            <p>配置文件 conf.ini<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[reids]</span></span><br><span class="line"><span class="attr">redis-port</span>=<span class="number">6379</span></span><br><span class="line"><span class="attr">redis-bin</span>=E:\Redis ;redis所在文件夹</span><br><span class="line"><span class="section">[tomcat-dc]</span></span><br><span class="line"><span class="attr">dc-port</span>=<span class="number">8888</span></span><br><span class="line"><span class="attr">dc-bin</span>=E:\apache-tomcat-dc ;tomcat-dc所在文件夹</span><br><span class="line"><span class="section">[tomcat-app]</span></span><br><span class="line"><span class="attr">app-port</span>=<span class="number">8080</span></span><br><span class="line"><span class="attr">app-bin</span>=E:\apache-tomcat-app ;tomcat-app所在文件夹</span><br></pre></td></tr></table></figure></p>
+<p>start.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem 获取配置文件 使用 %key% 获取值</span></span><br><span class="line">@<span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"><span class="keyword">for</span> /f "usebackq delims=" <span class="variable">%%a</span> <span class="keyword">in</span> (conf.ini) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">set</span> content=<span class="variable">%%a</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> "<span class="variable">!content:~0,1!</span>" == "[" (</span><br><span class="line">        <span class="keyword">for</span> /f "delims=; tokens=<span class="number">1</span>" <span class="variable">%%b</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">            <span class="built_in">set</span> content=<span class="variable">%%b</span></span><br><span class="line">            <span class="keyword">for</span> /f "delims== tokens=<span class="number">1</span>-<span class="number">2</span>" <span class="variable">%%i</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">                <span class="built_in">set</span> key=<span class="variable">%%i</span></span><br><span class="line">                    <span class="built_in">set</span> key=!key: =!</span><br><span class="line">                <span class="built_in">set</span> value=<span class="variable">%%j</span></span><br><span class="line">                    <span class="built_in">set</span> value=!value: =!</span><br><span class="line">                <span class="built_in">set</span> <span class="variable">!key!</span>=<span class="variable">!value!</span></span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"><span class="comment">rem 使用 netstat -ano| findstr 端口号  查看当前端口是否占用</span></span><br><span class="line"><span class="comment">rem 没有占用的话启动相应项目</span></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%redis-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "redis had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> redis..."</span><br><span class="line"><span class="comment">		REM @start "redis-server" cmd /k "%redis-bin%/redis-server.exe %redis-bin%/redis.windows.conf"</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%dc-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-dc had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-dc"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%dc-bin%</span>/bin"</span><br><span class="line">		<span class="built_in">start</span> "tomcat-dc" <span class="built_in">cmd</span> /c  "<span class="variable">%dc-bin%</span>/bin/startup.bat"</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%app-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-app had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-app"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%app-bin%</span>/bin"</span><br><span class="line">		@<span class="built_in">start</span> "tomcat-app" <span class="built_in">cmd</span> /c "<span class="variable">%app-bin%</span>\bin\startup.bat"</span><br></pre></td></tr></table></figure></p>
+<p>由start.bat生成runSystem.bat文件的脚本 generate.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> name=runSystem.bat</span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">echo</span> off &gt; <span class="variable">%name%</span></span><br><span class="line"><span class="comment">rem %cd% 当前目录 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">cd</span> /d <span class="variable">%cd%</span> &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">start</span>.bat &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">pause</span> &gt;&gt; <span class="variable">%name%</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>双击generate.bat生产runSystem.bat文件</li>
+<li>点击Window –&gt; 所有程序 –&gt; 启动 –&gt; 右键打开 –&gt; 将runSystem.bat文件放入 –&gt;重启计算机</li>
+</ul>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/15/bat批处理/开机自启tomcat和redis/" itemprop="url">
-              
-                <span itemprop="name">开机自启动tomcat和redis</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-15T15:55:33+08:00"
-              content="2017-12-15" >
-          12-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/15/input/" itemprop="url">
-              
-                <span itemprop="name">监听input textarea改变事件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-15T10:37:09+08:00"
-              content="2017-12-15" >
-          12-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/08/sql/" itemprop="url">
-              
-                <span itemprop="name">数据库设计的三大范式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-08T14:15:59+08:00"
-              content="2017-12-08" >
-          12-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/03/elasticsearch/03-Index API/" itemprop="url">
-              
-                <span itemprop="name">elasticsearch-index api</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-03T00:00:00+08:00"
-              content="2017-12-03" >
-          12-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/02/elasticsearch/02-client/" itemprop="url">
-              
-                <span itemprop="name">elasticsearch-客户端</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-02T00:00:00+08:00"
-              content="2017-12-02" >
-          12-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/01/elasticsearch/01-ready/" itemprop="url">
-              
-                <span itemprop="name">elasticsearch-前期准备（window + eclipse）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-01T00:00:00+08:00"
-              content="2017-12-01" >
-          12-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+      
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/15/input/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/input/" itemprop="url">监听input textarea改变事件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T10:37:09+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="监听input-textarea改变事件"><a href="#监听input-textarea改变事件" class="headerlink" title="监听input\textarea改变事件"></a>监听input\textarea改变事件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"txtInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"txtArea"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="引入jQuery库"><a href="#引入jQuery库" class="headerlink" title="引入jQuery库"></a>引入jQuery库</h4><h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#txtInput"</span>).bind(<span class="string">'input propertychange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">'#txtArea'</span>).bind(<span class="string">'input propertychange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="主要格式"><a href="#主要格式" class="headerlink" title="主要格式"></a>主要格式</h4><blockquote>
+<p>$(selecter).bind(‘input propertychange’,callback);</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/08/sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/08/sql/" itemprop="url">数据库设计的三大范式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T14:15:59+08:00">
+                2017-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>主要有六种范式：第一范式、第二范式、第三范式、BC范式、第四范式和第五范式。满足最低要求的叫第一范式，简称1NF。在第一范式基础上进一步满足一些要求的为第二范式，简称2NF。其余依此类推。</p>
+<p>范式可以避免数据冗余，减少数据库的空间，减轻维护数据完整性的麻烦，但是操作困难，因为需要联系多个表才能得到所需要数据，而且范式越高性能就会越差。要权衡是否使用更高范式是比较麻烦的，一般在项目中，用得最多的也就是第三范式，我认为使用到第三范式也就足够了，性能好而且方便管理数据。</p>
+<p>简单的说，<br>第一范式就是原子性，字段不可再分割；<br>第二范式记录的唯一性约束，要求记录有唯一的标识，即实体的唯一性。<br>第三范式对字段冗余性的约束，即任何字段不能由其他字段派生出来。</p>
+</blockquote>
+<p>没有冗余的数据库设计可以做到。但是，没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低凡是标准，适当保留冗余数据。<br>具体的做法是：在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加冗余字段，允许冗余。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/03/elasticsearch/03-Index API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/03/elasticsearch/03-Index API/" itemprop="url">elasticsearch-index api</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-03T00:00:00+08:00">
+                2017-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.0/java-docs-index.html" target="_blank" rel="noopener">官方文档–Index API</a></p>
+<h3 id="生成JSON文档"><a href="#生成JSON文档" class="headerlink" title="生成JSON文档"></a>生成JSON文档</h3><p>生成方式</p>
+<p>1.手动生成字符串形式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">jsonSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	String jsonSource = <span class="string">"&#123;"</span> +</span><br><span class="line">	        <span class="string">"\"country\":\"China VS US\","</span> +</span><br><span class="line">	        <span class="string">"\"startTime\":\""</span>+<span class="keyword">new</span> Date()+<span class="string">"\","</span> +</span><br><span class="line">	        <span class="string">"\"message\":\"China is ok !\""</span> +</span><br><span class="line">	        <span class="string">"&#125;"</span>;</span><br><span class="line">	System.out.println(jsonSource);</span><br><span class="line">	<span class="keyword">return</span> jsonSource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.使用自己的bean<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">        get/set ...</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">byte</span>[] byteSource() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	TestBean testBean = <span class="keyword">new</span> TestBean();</span><br><span class="line">	testBean.setAge(<span class="number">11</span>);</span><br><span class="line">	testBean.setId(<span class="string">"abcdefg"</span>);</span><br><span class="line">	testBean.setName(<span class="string">"i7baoz"</span>);</span><br><span class="line">	ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">	<span class="keyword">return</span> mapper.writeValueAsBytes(testBean);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<blockquote>
+<p>在使用前两种方法是要注意：</p>
+<p>indexRequest.source()时要指定类型</p>
+<p>eg: indexRequest.source(byteSource(),XContentType.JSON);</p>
+<p>否则会报错误：</p>
+<p>java.lang.IllegalArgumentException: The number of object passed must be even but was [1]</p>
+</blockquote>
+<hr>
+<p>3.使用Map形式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String,Object&gt; <span class="title">mapSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Map&lt;String,Object&gt; mapSource = <span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">	</span><br><span class="line">	mapSource.put(<span class="string">"country"</span>,<span class="string">"China VS US"</span>);</span><br><span class="line">	mapSource.put(<span class="string">"startTime"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">	mapSource.put(<span class="string">"message"</span>, <span class="string">"China is ok !"</span>);</span><br><span class="line">	<span class="keyword">return</span> mapSource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.使用XContentBuilder<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> XContentBuilder <span class="title">builderSource</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	XContentBuilder xcbSource = XContentFactory.jsonBuilder();</span><br><span class="line">	xcbSource</span><br><span class="line">		.startObject()</span><br><span class="line">			.field(<span class="string">"country"</span>,<span class="string">"China VS US"</span>)</span><br><span class="line">			.field(<span class="string">"startTime"</span>,<span class="keyword">new</span> Date())</span><br><span class="line">			.field(<span class="string">"message"</span>,<span class="string">"China is ok !"</span>)</span><br><span class="line">		.endObject();</span><br><span class="line">	<span class="keyword">return</span> xcbSource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果想看生成的原始json可以使用string()方法</p>
+<p>String json = xcbSource.string();</p>
+</blockquote>
+<h3 id="索引文档"><a href="#索引文档" class="headerlink" title="索引文档"></a>索引文档</h3><blockquote>
+<p>理解为将文档保存</p>
+<p>对比讲就是讲数据保存至数据库 -_-</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分别提供 索引， 类型，文档id</span></span><br><span class="line"><span class="comment">//文档id不提供的话系统会自动生成</span></span><br><span class="line">IndexRequest indexRequest = <span class="keyword">new</span> IndexRequest(index,type,id);</span><br><span class="line"><span class="comment">//设置数据来源，以上4种方式</span></span><br><span class="line">indexRequest.source(source [,XContentType.JSON]);</span><br><span class="line"><span class="comment">//设置操作类型</span></span><br><span class="line"><span class="comment">//默认为update</span></span><br><span class="line">indexRequest.opType(OpType.CREATE/UPDATE/INDEX/DELETE)</span><br><span class="line"><span class="comment">//设置路由</span></span><br><span class="line">indexRequest.routing([String])</span><br><span class="line"><span class="comment">//设置上级文档的id</span></span><br><span class="line">indexRequest.parent(<span class="string">""</span>);</span><br><span class="line"><span class="comment">//设置刷新策略</span></span><br><span class="line">indexRequest.setRefreshPolicy(RefreshPolicy);</span><br><span class="line"></span><br><span class="line"><span class="comment">//索引（保存）有两种方式</span></span><br><span class="line"><span class="comment">//一个是同步索引（保存）</span></span><br><span class="line"><span class="comment">//一个是异步索引（保存）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//同步索引</span></span><br><span class="line">IndexResponse response = client.index(indexRequest);</span><br><span class="line"></span><br><span class="line"><span class="comment">//异步索引</span></span><br><span class="line">client.indexAsync(indexRequst,<span class="keyword">new</span> ActionListener&lt;IndexResponse&gt;()&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(IndexResponse response)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//索引成功</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//索引失败 抛出异常信息</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//索引响应IndexResponse包含的信息</span></span><br><span class="line"></span><br><span class="line">String indexName = response.getIndex();</span><br><span class="line">String typeName = response.getType();</span><br><span class="line">String documentId = response.getId();</span><br><span class="line"><span class="keyword">long</span> documentVersion = response.getVersion();</span><br><span class="line"><span class="comment">//操作状态  CREATED / UPDATED / DELETED / NOT_FOUND / NOOP</span></span><br><span class="line">RestStatus status = response.status();</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/02/elasticsearch/02-client/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/02/elasticsearch/02-client/" itemprop="url">elasticsearch-客户端</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-02T00:00:00+08:00">
+                2017-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="创建简单的高级别客户端"><a href="#创建简单的高级别客户端" class="headerlink" title="创建简单的高级别客户端"></a>创建简单的高级别客户端</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> RestHighLevelClient client = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//创建客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    client = <span class="keyword">new</span> RestHighLevelClient(</span><br><span class="line">        RestClient.builder(</span><br><span class="line">            <span class="keyword">new</span> HttpHost(<span class="string">"localhost"</span>,<span class="number">9200</span>,<span class="string">"http"</span>);</span><br><span class="line">        );</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//关闭客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clientClose</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( !Objects.isNull(client) ) &#123;</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>此处 client 会在以后的文章中使用</em></strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/01/elasticsearch/01-ready/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/01/elasticsearch/01-ready/" itemprop="url">elasticsearch-前期准备（window + eclipse）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T00:00:00+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h4><ul>
+<li>java<ul>
+<li>jdk1.8及以上</li>
+<li>配置环境变量</li>
+</ul>
+</li>
+<li>elasticsearch<ul>
+<li>6.0.0<blockquote>
+<p>java安装及环境变量自行Google/baidu</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="elasticsearch安装流程"><a href="#elasticsearch安装流程" class="headerlink" title="elasticsearch安装流程"></a>elasticsearch安装流程</h5><p><a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">elasticsearch下载地址</a></p>
+<ul>
+<li>下载elasticsearch zip压缩包</li>
+<li>解压</li>
+<li>cd bin目录</li>
+<li>shift + 鼠标右键  –&gt; ‘在此处打开命令窗口（W）’ </li>
+<li>输入elasticsearch </li>
+<li>服务端完毕</li>
+</ul>
+<hr>
+<h5 id="eclipse"><a href="#eclipse" class="headerlink" title="eclipse"></a>eclipse</h5><ul>
+<li>jdk1.8以上</li>
+<li>maven 依赖  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;6.0.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="通俗理解es"><a href="#通俗理解es" class="headerlink" title="通俗理解es"></a>通俗理解es</h4><blockquote>
+<p>通俗的理解es（elasticsearch):es是一个仓库，可以存放任何东西，我们能向仓库寄存东西，也能从仓库取东西。<br>寄存东西的时候要告诉他，物品是要存放在哪个小屋子里（index)，属于什么类型（type）的,物品的回执单可以自己写，也可以通过&gt; 仓库提供。<br>取东西的时候要告诉他，是哪个屋子里的什么类型的东西，或者更具体一点，哪个屋子中类型是啥的回执单上的字是什么的。</p>
+<p>可以按照范围获取东西，也可以统计，类似数据库。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
 
 
           </div>
