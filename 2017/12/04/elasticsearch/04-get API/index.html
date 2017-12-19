@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Get APIGet Request实例化1GetRequest request = new GetRequest(indexName,type,documentId); e.g.12345678public void get() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch-get api">
+<meta property="og:url" content="http://www.i7baoz.cn/2017/12/04/elasticsearch/04-get API/index.html">
+<meta property="og:site_name" content="积累">
+<meta property="og:description" content="Get APIGet Request实例化1GetRequest request = new GetRequest(indexName,type,documentId); e.g.12345678public void get() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-19T08:00:11.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch-get api">
+<meta name="twitter:description" content="Get APIGet Request实例化1GetRequest request = new GetRequest(indexName,type,documentId); e.g.12345678public void get() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.i7baoz.cn/2017/12/04/elasticsearch/04-get API/21"/>
+
+
+
+
+
+  <title>elasticsearch-get api | 积累</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">积累</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不积跬步无以至千里</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            所有
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-plan">
+          <a href="/plan/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-thumbs-o-up"></i> <br />
+            
+            计划
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/04/elasticsearch/04-get API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch-get api</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T00:00:00+08:00">
+                2017-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Get-API"><a href="#Get-API" class="headerlink" title="Get API"></a>Get API</h2><h3 id="Get-Request实例化"><a href="#Get-Request实例化" class="headerlink" title="Get Request实例化"></a>Get Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetRequest request = <span class="keyword">new</span> GetRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<p>e.g.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest);</span><br><span class="line">    System.out.println(getResponse.getSourceAsString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打印结果</span></span><br><span class="line">    <span class="comment">//&#123;"id":"1","name":"name_1","age":1,"updateTime":1513654831475,"birth":1513654216715,"hight":0.6375151,"weight":0.4946818126143968,"isBoy":false&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="设置版本号"><a href="#设置版本号" class="headerlink" title="设置版本号"></a>设置版本号</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.version(<span class="keyword">long</span> version);</span><br></pre></td></tr></table></figure>
+<h5 id="设置要抓取的源数据"><a href="#设置要抓取的源数据" class="headerlink" title="设置要抓取的源数据"></a>设置要抓取的源数据</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.fetchSourceContext(FetchSourceContext context);</span><br></pre></td></tr></table></figure>
+<h6 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] includes = <span class="keyword">new</span> String[]&#123;<span class="string">"name"</span>,<span class="string">"hight"</span>,<span class="string">"updateTime"</span>&#125;;</span><br><span class="line">String[] excludes = Strings.EMPTY_ARRAY;</span><br><span class="line">FetchSourceContext fetchSourceContext = <span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes);</span><br><span class="line">getRequest.fetchSourceContext(fetchSourceContext); </span><br><span class="line">GetResponse getResponse = client.get(getRequest);</span><br><span class="line">System.out.println(<span class="string">" get: "</span> + getResponse.getSourceAsString());</span><br><span class="line"><span class="comment">//只获取检索到的数据中 name height updateTime 字段的值</span></span><br><span class="line"><span class="comment">//打印结果  get: &#123;"name":"name_3","hight":0.84175926,"updateTime":1513654831475&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] includes = Strings.EMPTY_ARRAY;</span><br><span class="line">String[] excludes = <span class="keyword">new</span> String[]&#123;<span class="string">"name"</span>,<span class="string">"hight"</span>,<span class="string">"updateTime"</span>&#125;;</span><br><span class="line">FetchSourceContext fetchSourceContext = <span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes);</span><br><span class="line">getRequest.fetchSourceContext(fetchSourceContext);</span><br><span class="line">GetResponse getResponse = client.get(getRequest);</span><br><span class="line">System.out.println(<span class="string">" get: "</span> + getResponse.getSourceAsString());</span><br><span class="line"><span class="comment">//与上个正好相反，获取检索到的数据中除了 name height updateTime字段其他字段的值</span></span><br><span class="line"><span class="comment">//打印结果  get: &#123;"birth":1513654216715,"weight":0.3806846418323202,"id":"3","age":3,"isBoy":false&#125;</span></span><br></pre></td></tr></table></figure>
+<h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#" class="headerlink" title="?"></a>?</h5><blockquote>
+<p>Configure retrieval for specific stored fields (requires fields to be stored separately in the mappings)<br>Retrieve the message stored field (requires the field to be stored separately in the mappings)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getRequest.storedFields(<span class="string">"message"</span>); </span><br><span class="line">GetResponse getResponse = client.get(getRequest);</span><br><span class="line">String message = getResponse.getField(<span class="string">"message"</span>).getValue();</span><br></pre></td></tr></table></figure>
+<h5 id="Preference"><a href="#Preference" class="headerlink" title="Preference"></a>Preference</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.preference(<span class="string">"preference"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="realtime-flag"><a href="#realtime-flag" class="headerlink" title="realtime flag"></a>realtime flag</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getRequest.realtime(<span class="keyword">false</span>);</span><br><span class="line"><span class="comment">//默认为true</span></span><br></pre></td></tr></table></figure>
+<h5 id="refresh"><a href="#refresh" class="headerlink" title="refresh"></a>refresh</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getRequest.refresh(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">//默认为false</span></span><br></pre></td></tr></table></figure>
+<h5 id="versionType"><a href="#versionType" class="headerlink" title="versionType"></a>versionType</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getRequest.versionType(VersionType.EXTERNAL);</span><br><span class="line"><span class="comment">//默认为false</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Get-Response"><a href="#Get-Response" class="headerlink" title="Get Response"></a>Get Response</h3><ul>
+<li>同步方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetResponse getResponse = client.get(getRequest);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>异步方式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">client.getAsync(getRequest, <span class="keyword">new</span> ActionListener&lt;GetResponse&gt;()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(GetResponse getResponse)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//正常响应</span></span><br><span class="line">        System.out.println(<span class="string">" getAsync: "</span> +getResponse.getSourceAsString());</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//出错</span></span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="GetResponse方法"><a href="#GetResponse方法" class="headerlink" title="GetResponse方法"></a>GetResponse方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index名称</span></span><br><span class="line">String index = getResponse.getIndex();</span><br><span class="line"><span class="comment">//类型</span></span><br><span class="line">String type = getResponse.getType();</span><br><span class="line"><span class="comment">//文档id</span></span><br><span class="line">String id = getResponse.getId();</span><br><span class="line"></span><br><span class="line"><span class="comment">//文档是否存在</span></span><br><span class="line"><span class="keyword">if</span> (getResponse.isExists()) &#123;</span><br><span class="line">    <span class="comment">//文档版本</span></span><br><span class="line">    <span class="keyword">long</span> version = getResponse.getVersion();</span><br><span class="line">    <span class="comment">//文档以字符串的形式返回</span></span><br><span class="line">    String sourceAsString = getResponse.getSourceAsString();  </span><br><span class="line">     <span class="comment">//文档以Map的形式返回      </span></span><br><span class="line">    Map&lt;String, Object&gt; sourceAsMap = getResponse.getSourceAsMap(); </span><br><span class="line">     <span class="comment">//文档以字节的形式返回</span></span><br><span class="line">    <span class="keyword">byte</span>[] sourceAsBytes = getResponse.getSourceAsBytes();          </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//处理找不到文档的情况。 请注意，尽管返回的响应具有404状态码，但返回的是有效的GetResponse，而不是抛出的异常。 这样的响应不包含任何源文件，其isExists方法返回false。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h5><h6 id="404"><a href="#404" class="headerlink" title="404"></a>404</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GetRequest request = <span class="keyword">new</span> GetRequest(<span class="string">"does_not_exist"</span>, <span class="string">"doc"</span>, <span class="string">"1"</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    GetResponse getResponse = client.get(request);</span><br><span class="line">&#125; <span class="keyword">catch</span> (ElasticsearchException e) &#123;</span><br><span class="line">    <span class="keyword">if</span> (e.status() == RestStatus.NOT_FOUND) &#123;</span><br><span class="line">        <span class="comment">//当针对不存在的索引执行获取请求时，响应具有404状态码，将引发ElasticsearchException</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="版本冲突"><a href="#版本冲突" class="headerlink" title="版本冲突"></a>版本冲突</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    GetRequest request = <span class="keyword">new</span> GetRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"1"</span>).version(<span class="number">2</span>);</span><br><span class="line">    GetResponse getResponse = client.get(request);</span><br><span class="line">&#125; <span class="keyword">catch</span> (ElasticsearchException exception) &#123;</span><br><span class="line">    <span class="keyword">if</span> (exception.status() == RestStatus.CONFLICT) &#123;</span><br><span class="line">        <span class="comment">//如果请求了特定的文档版本，并且现有文档具有不同的版本号，则会引发版本冲突：</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/03/elasticsearch/03-Index API/" rel="next" title="elasticsearch-index api">
+                <i class="fa fa-chevron-left"></i> elasticsearch-index api
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/05/elasticsearch/05-delete API/" rel="prev" title="elasticsearch-delete api">
+                elasticsearch-delete api <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">i7baoZ</p>
+              <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-API"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Get-API" class="headerlink" title="Get API"></a>Get API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Request实例化"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#Get-Request&#x5B9E;&#x4F8B;&#x5316;" class="headerlink" title="Get Request&#x5B9E;&#x4F8B;&#x5316;"></a>Get Request&#x5B9E;&#x4F8B;&#x5316;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可选参数"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x53EF;&#x9009;&#x53C2;&#x6570;" class="headerlink" title="&#x53EF;&#x9009;&#x53C2;&#x6570;"></a>&#x53EF;&#x9009;&#x53C2;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置版本号"><span class="nav-number">1.1.1.1.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;&#x7248;&#x672C;&#x53F7;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x7248;&#x672C;&#x53F7;"></a>&#x8BBE;&#x7F6E;&#x7248;&#x672C;&#x53F7;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置要抓取的源数据"><span class="nav-number">1.1.1.2.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;&#x8981;&#x6293;&#x53D6;&#x7684;&#x6E90;&#x6570;&#x636E;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x8981;&#x6293;&#x53D6;&#x7684;&#x6E90;&#x6570;&#x636E;"></a>&#x8BBE;&#x7F6E;&#x8981;&#x6293;&#x53D6;&#x7684;&#x6E90;&#x6570;&#x636E;</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#举例说明"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text"><a href="#&#x4E3E;&#x4F8B;&#x8BF4;&#x660E;" class="headerlink" title="&#x4E3E;&#x4F8B;&#x8BF4;&#x660E;"></a>&#x4E3E;&#x4F8B;&#x8BF4;&#x660E;</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路由"><span class="nav-number">1.1.1.3.</span> <span class="nav-text"><a href="#&#x8DEF;&#x7531;" class="headerlink" title="&#x8DEF;&#x7531;"></a>&#x8DEF;&#x7531;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父级文档id"><span class="nav-number">1.1.1.4.</span> <span class="nav-text"><a href="#&#x7236;&#x7EA7;&#x6587;&#x6863;id" class="headerlink" title="&#x7236;&#x7EA7;&#x6587;&#x6863;id"></a>&#x7236;&#x7EA7;&#x6587;&#x6863;id</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.1.1.5.</span> <span class="nav-text"><a href="#" class="headerlink" title="?"></a>?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Preference"><span class="nav-number">1.1.1.6.</span> <span class="nav-text"><a href="#Preference" class="headerlink" title="Preference"></a>Preference</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#realtime-flag"><span class="nav-number">1.1.1.7.</span> <span class="nav-text"><a href="#realtime-flag" class="headerlink" title="realtime flag"></a>realtime flag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#refresh"><span class="nav-number">1.1.1.8.</span> <span class="nav-text"><a href="#refresh" class="headerlink" title="refresh"></a>refresh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#versionType"><span class="nav-number">1.1.1.9.</span> <span class="nav-text"><a href="#versionType" class="headerlink" title="versionType"></a>versionType</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-Response"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Get-Response" class="headerlink" title="Get Response"></a>Get Response</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GetResponse方法"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#GetResponse&#x65B9;&#x6CD5;" class="headerlink" title="GetResponse&#x65B9;&#x6CD5;"></a>GetResponse&#x65B9;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误处理"><span class="nav-number">1.2.1.1.</span> <span class="nav-text"><a href="#&#x9519;&#x8BEF;&#x5904;&#x7406;" class="headerlink" title="&#x9519;&#x8BEF;&#x5904;&#x7406;"></a>&#x9519;&#x8BEF;&#x5904;&#x7406;</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#404"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text"><a href="#404" class="headerlink" title="404"></a>404</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#版本冲突"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x51B2;&#x7A81;" class="headerlink" title="&#x7248;&#x672C;&#x51B2;&#x7A81;"></a>&#x7248;&#x672C;&#x51B2;&#x7A81;</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">i7baoZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by"> <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info"> theme  &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

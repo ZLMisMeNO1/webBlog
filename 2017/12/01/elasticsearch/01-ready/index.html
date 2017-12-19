@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前期准备 java jdk1.8及以上 配置环境变量   elasticsearch 6.0.0 java安装及环境变量自行Google/baidu       elasticsearch安装流程elasticsearch下载地址  下载elasticsearch zip压缩包 解压 cd bin目录 shift + 鼠标右键  –&amp;gt; ‘在此处打开命令窗口（W）’  输入elasticsea">
+<meta name="description" content="本机状态 java -version 1.8.0_151 elasticsearch 6.0.0 elasticsearch-rest-high-level-client  6.0.1 前期准备 java  jdk1.8及以上 配置环境变量   elasticsearch 6.0.0 java安装及环境变量自行Google/baidu       elasticsearch安装流程elastics">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-前期准备（window + eclipse）">
 <meta property="og:url" content="http://www.i7baoz.cn/2017/12/01/elasticsearch/01-ready/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="前期准备 java jdk1.8及以上 配置环境变量   elasticsearch 6.0.0 java安装及环境变量自行Google/baidu       elasticsearch安装流程elasticsearch下载地址  下载elasticsearch zip压缩包 解压 cd bin目录 shift + 鼠标右键  –&amp;gt; ‘在此处打开命令窗口（W）’  输入elasticsea">
+<meta property="og:description" content="本机状态 java -version 1.8.0_151 elasticsearch 6.0.0 elasticsearch-rest-high-level-client  6.0.1 前期准备 java  jdk1.8及以上 配置环境变量   elasticsearch 6.0.0 java安装及环境变量自行Google/baidu       elasticsearch安装流程elastics">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T06:49:35.499Z">
+<meta property="og:updated_time" content="2017-12-19T03:06:50.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-前期准备（window + eclipse）">
-<meta name="twitter:description" content="前期准备 java jdk1.8及以上 配置环境变量   elasticsearch 6.0.0 java安装及环境变量自行Google/baidu       elasticsearch安装流程elasticsearch下载地址  下载elasticsearch zip压缩包 解压 cd bin目录 shift + 鼠标右键  –&amp;gt; ‘在此处打开命令窗口（W）’  输入elasticsea">
+<meta name="twitter:description" content="本机状态 java -version 1.8.0_151 elasticsearch 6.0.0 elasticsearch-rest-high-level-client  6.0.1 前期准备 java  jdk1.8及以上 配置环境变量   elasticsearch 6.0.0 java安装及环境变量自行Google/baidu       elasticsearch安装流程elastics">
 
 
 
@@ -362,8 +362,13 @@
       
 
       
-        <h4 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h4><ul>
-<li>java<ul>
+        <h4 id="本机状态"><a href="#本机状态" class="headerlink" title="本机状态"></a>本机状态</h4><ul>
+<li>java -version 1.8.0_151</li>
+<li>elasticsearch 6.0.0</li>
+<li><p>elasticsearch-rest-high-level-client  6.0.1</p>
+<h4 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h4></li>
+<li><p>java</p>
+<ul>
 <li>jdk1.8及以上</li>
 <li>配置环境变量</li>
 </ul>
@@ -392,11 +397,6 @@
 <li>maven 依赖  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;6.0.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<hr>
-<h4 id="通俗理解es"><a href="#通俗理解es" class="headerlink" title="通俗理解es"></a>通俗理解es</h4><blockquote>
-<p>通俗的理解es（elasticsearch):es是一个仓库，可以存放任何东西，我们能向仓库寄存东西，也能从仓库取东西。<br>寄存东西的时候要告诉他，物品是要存放在哪个小屋子里（index)，属于什么类型（type）的,物品的回执单可以自己写，也可以通过&gt; 仓库提供。<br>取东西的时候要告诉他，是哪个屋子里的什么类型的东西，或者更具体一点，哪个屋子中类型是啥的回执单上的字是什么的。</p>
-<p>可以按照范围获取东西，也可以统计，类似数据库。</p>
-</blockquote>
 <hr>
 <h4 id="本机测试速度"><a href="#本机测试速度" class="headerlink" title="本机测试速度"></a>本机测试速度</h4><blockquote>
 <p>本机测试33万数据可以达到毫秒级的模糊查询</p>
@@ -520,7 +520,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x671F;&#x51C6;&#x5907;" class="headerlink" title="&#x524D;&#x671F;&#x51C6;&#x5907;"></a>&#x524D;&#x671F;&#x51C6;&#x5907;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#elasticsearch安装流程"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#elasticsearch&#x5B89;&#x88C5;&#x6D41;&#x7A0B;" class="headerlink" title="elasticsearch&#x5B89;&#x88C5;&#x6D41;&#x7A0B;"></a>elasticsearch&#x5B89;&#x88C5;&#x6D41;&#x7A0B;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eclipse"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#eclipse" class="headerlink" title="eclipse"></a>eclipse</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通俗理解es"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x901A;&#x4FD7;&#x7406;&#x89E3;es" class="headerlink" title="&#x901A;&#x4FD7;&#x7406;&#x89E3;es"></a>&#x901A;&#x4FD7;&#x7406;&#x89E3;es</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本机测试速度"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x672C;&#x673A;&#x6D4B;&#x8BD5;&#x901F;&#x5EA6;" class="headerlink" title="&#x672C;&#x673A;&#x6D4B;&#x8BD5;&#x901F;&#x5EA6;"></a>&#x672C;&#x673A;&#x6D4B;&#x8BD5;&#x901F;&#x5EA6;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#本机状态"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x672C;&#x673A;&#x72B6;&#x6001;" class="headerlink" title="&#x672C;&#x673A;&#x72B6;&#x6001;"></a>&#x672C;&#x673A;&#x72B6;&#x6001;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前期准备"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x524D;&#x671F;&#x51C6;&#x5907;" class="headerlink" title="&#x524D;&#x671F;&#x51C6;&#x5907;"></a>&#x524D;&#x671F;&#x51C6;&#x5907;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#elasticsearch安装流程"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#elasticsearch&#x5B89;&#x88C5;&#x6D41;&#x7A0B;" class="headerlink" title="elasticsearch&#x5B89;&#x88C5;&#x6D41;&#x7A0B;"></a>elasticsearch&#x5B89;&#x88C5;&#x6D41;&#x7A0B;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eclipse"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#eclipse" class="headerlink" title="eclipse"></a>eclipse</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本机测试速度"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x672C;&#x673A;&#x6D4B;&#x8BD5;&#x901F;&#x5EA6;" class="headerlink" title="&#x672C;&#x673A;&#x6D4B;&#x8BD5;&#x901F;&#x5EA6;"></a>&#x672C;&#x673A;&#x6D4B;&#x8BD5;&#x901F;&#x5EA6;</span></a></li></ol></div>
             
 
           </div>

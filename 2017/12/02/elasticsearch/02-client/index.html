@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="创建简单的高级别客户端123456789101112131415private RestHighLevelClient client = null;//创建客户端public void getClient() &amp;#123;    client = new RestHighLevelClient(        RestClient.builder(            new HttpHost(">
+<meta name="description" content="Java High Level Rest Client关于javaHighLevelRestClien  The Java High Level REST Client works on top of the Java Low Level REST client. Its main goal is to expose API specific methods, that accept reques">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-客户端">
 <meta property="og:url" content="http://www.i7baoz.cn/2017/12/02/elasticsearch/02-client/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="创建简单的高级别客户端123456789101112131415private RestHighLevelClient client = null;//创建客户端public void getClient() &amp;#123;    client = new RestHighLevelClient(        RestClient.builder(            new HttpHost(">
+<meta property="og:description" content="Java High Level Rest Client关于javaHighLevelRestClien  The Java High Level REST Client works on top of the Java Low Level REST client. Its main goal is to expose API specific methods, that accept reques">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T03:01:31.140Z">
+<meta property="og:updated_time" content="2017-12-19T03:45:49.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-客户端">
-<meta name="twitter:description" content="创建简单的高级别客户端123456789101112131415private RestHighLevelClient client = null;//创建客户端public void getClient() &amp;#123;    client = new RestHighLevelClient(        RestClient.builder(            new HttpHost(">
+<meta name="twitter:description" content="Java High Level Rest Client关于javaHighLevelRestClien  The Java High Level REST Client works on top of the Java Low Level REST client. Its main goal is to expose API specific methods, that accept reques">
 
 
 
@@ -362,7 +362,32 @@
       
 
       
-        <h4 id="创建简单的高级别客户端"><a href="#创建简单的高级别客户端" class="headerlink" title="创建简单的高级别客户端"></a>创建简单的高级别客户端</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> RestHighLevelClient client = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//创建客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    client = <span class="keyword">new</span> RestHighLevelClient(</span><br><span class="line">        RestClient.builder(</span><br><span class="line">            <span class="keyword">new</span> HttpHost(<span class="string">"localhost"</span>,<span class="number">9200</span>,<span class="string">"http"</span>);</span><br><span class="line">        );</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//关闭客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clientClose</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( !Objects.isNull(client) ) &#123;</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="Java-High-Level-Rest-Client"><a href="#Java-High-Level-Rest-Client" class="headerlink" title="Java High Level Rest Client"></a>Java High Level Rest Client</h4><p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank" rel="noopener">关于javaHighLevelRestClien</a></p>
+<blockquote>
+<p>The Java High Level REST Client works on top of the Java Low Level REST client. Its main goal is to expose API specific methods, that accept request objects as an argument and return response objects, so that request marshalling and response un-marshalling is handled by the client itself.</p>
+</blockquote>
+<p>Java高级别REST客户端在Java低级别REST客户端上工作。 其主要目标是公开API接口的具体方法，接受请求对象作为参数并返回响应对象，以便请求编组和响应解组由客户端自己处理。</p>
+<blockquote>
+<p>Each API can be called synchronously or asynchronously. The synchronous methods return a response object, while the asynchronous methods, whose names end with the async suffix, require a listener argument that is notified (on the thread pool managed by the low level client) once a response or an error is received.</p>
+</blockquote>
+<p>每个API都可以同步或异步调用。 同步方法返回一个响应对象，而异步方法的名称以异步后缀（async）结尾，需要一个监听器参数，一旦收到响应或错误，会通知（在低级客户端管理的线程池中）。</p>
+<blockquote>
+<p>The Java High Level REST Client depends on the Elasticsearch core project. It accepts the same request arguments as the TransportClient and returns the same response objects.</p>
+</blockquote>
+<p>Java高级REST客户端依赖于Elasticsearch核心项目。 它接受与TransportClient相同的请求参数，并返回相同的响应对象。</p>
+<h4 id="创建简单的高级别客户端"><a href="#创建简单的高级别客户端" class="headerlink" title="创建简单的高级别客户端"></a>创建简单的高级别客户端</h4><blockquote>
+<p>A RestHighLevelClient instance needs a REST low-level client builder to be built as follows:</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> RestHighLevelClient client = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//创建客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    client = <span class="keyword">new</span> RestHighLevelClient(</span><br><span class="line">        RestClient.builder(</span><br><span class="line">            <span class="keyword">new</span> HttpHost(<span class="string">"localhost"</span>,<span class="number">9200</span>,<span class="string">"http"</span>);</span><br><span class="line">        );</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The high-level client will internally create the low-level client used to perform requests based on the provided builder, and manage its lifecycle.</p>
+</blockquote>
+<p>高级客户端将在内部创建用于基于提供的构建器执行请求的低级客户端，并管理其生命周期。</p>
+<blockquote>
+<p>The high-level client instance needs to be closed when no longer needed so that all the resources used by it get properly released, as well as the underlying http client instance and its threads. This can be done through the close method, which will close the internal RestClient instance.</p>
+</blockquote>
+<p>当不再需要高级客户端实例时，需要关闭高级客户端实例，以便使用的所有资源以及底层http客户端实例及其线程都得到正确释放。 这可以通过close方法来完成，这将关闭RestClient的内部实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关闭客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clientClose</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( !Objects.isNull(client) ) &#123;</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong><em>此处 client 会在以后的文章中使用</em></strong></p>
 
       
@@ -483,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -540,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建简单的高级别客户端"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;&#x9AD8;&#x7EA7;&#x522B;&#x5BA2;&#x6237;&#x7AEF;" class="headerlink" title="&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;&#x9AD8;&#x7EA7;&#x522B;&#x5BA2;&#x6237;&#x7AEF;"></a>&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;&#x9AD8;&#x7EA7;&#x522B;&#x5BA2;&#x6237;&#x7AEF;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-High-Level-Rest-Client"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Java-High-Level-Rest-Client" class="headerlink" title="Java High Level Rest Client"></a>Java High Level Rest Client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建简单的高级别客户端"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;&#x9AD8;&#x7EA7;&#x522B;&#x5BA2;&#x6237;&#x7AEF;" class="headerlink" title="&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;&#x9AD8;&#x7EA7;&#x522B;&#x5BA2;&#x6237;&#x7AEF;"></a>&#x521B;&#x5EFA;&#x7B80;&#x5355;&#x7684;&#x9AD8;&#x7EA7;&#x522B;&#x5BA2;&#x6237;&#x7AEF;</span></a></li></ol></div>
             
 
           </div>

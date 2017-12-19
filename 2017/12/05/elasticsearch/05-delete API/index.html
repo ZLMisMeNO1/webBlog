@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Delete APIDelete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId); 可选参数路由1getRequest.routing(&quot;routing&quot;); 父级文档id1getRequest.parent(&quot;parent&quot;); 超时时间12request.timeout(TimeVa">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch-delete api">
+<meta property="og:url" content="http://www.i7baoz.cn/2017/12/05/elasticsearch/05-delete API/index.html">
+<meta property="og:site_name" content="积累">
+<meta property="og:description" content="Delete APIDelete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId); 可选参数路由1getRequest.routing(&quot;routing&quot;); 父级文档id1getRequest.parent(&quot;parent&quot;); 超时时间12request.timeout(TimeVa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-19T08:24:06.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch-delete api">
+<meta name="twitter:description" content="Delete APIDelete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId); 可选参数路由1getRequest.routing(&quot;routing&quot;); 父级文档id1getRequest.parent(&quot;parent&quot;); 超时时间12request.timeout(TimeVa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.i7baoz.cn/2017/12/05/elasticsearch/05-delete API/21"/>
+
+
+
+
+
+  <title>elasticsearch-delete api | 积累</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">积累</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不积跬步无以至千里</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            所有
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-plan">
+          <a href="/plan/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-thumbs-o-up"></i> <br />
+            
+            计划
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/05/elasticsearch/05-delete API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch-delete api</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T00:00:00+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Delete-API"><a href="#Delete-API" class="headerlink" title="Delete API"></a>Delete API</h2><h3 id="Delete-Request实例化"><a href="#Delete-Request实例化" class="headerlink" title="Delete Request实例化"></a>Delete Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeleteRequest request = <span class="keyword">new</span> DeleteRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Timeout to wait for primary shard to become available as a TimeValue<br>Timeout to wait for primary shard to become available as a String</p>
+</blockquote>
+<h5 id="刷新策略"><a href="#刷新策略" class="headerlink" title="刷新策略"></a>刷新策略</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL); </span><br><span class="line">request.setRefreshPolicy(<span class="string">"wait_for"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Refresh policy as a WriteRequest.RefreshPolicy instance<br>Refresh policy as a String</p>
+</blockquote>
+<h5 id="版本及类型"><a href="#版本及类型" class="headerlink" title="版本及类型"></a>版本及类型</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.version(<span class="number">2</span>); </span><br><span class="line">request.versionType(VersionType.EXTERNAL);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="DeleteResponse"><a href="#DeleteResponse" class="headerlink" title="DeleteResponse"></a>DeleteResponse</h3><ul>
+<li>同步方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeleteResponse deleteResponse = client.delete(request);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>异步方式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">client.deleteAsync(request, <span class="keyword">new</span> ActionListener&lt;DeleteResponse&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(DeleteResponse deleteResponse)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="DeleteResponse方法"><a href="#DeleteResponse方法" class="headerlink" title="DeleteResponse方法"></a>DeleteResponse方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">String index = deleteResponse.getIndex();</span><br><span class="line">String type = deleteResponse.getType();</span><br><span class="line">String id = deleteResponse.getId();</span><br><span class="line"><span class="keyword">long</span> version = deleteResponse.getVersion();</span><br><span class="line"></span><br><span class="line">ReplicationResponse.ShardInfo shardInfo = deleteResponse.getShardInfo();</span><br><span class="line"><span class="keyword">if</span> (shardInfo.getTotal() != shardInfo.getSuccessful()) &#123;</span><br><span class="line">    <span class="comment">//处理 成功的碎片数量 少于 总碎片数 的情况</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (shardInfo.getFailed() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (ReplicationResponse.ShardInfo.Failure failure : shardInfo.getFailures()) &#123;</span><br><span class="line">        String reason = failure.reason(); </span><br><span class="line">        <span class="comment">//处理失败</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h5><h6 id="404"><a href="#404" class="headerlink" title="404"></a>404</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DeleteRequest request = <span class="keyword">new</span> DeleteRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"does_not_exist"</span>);</span><br><span class="line">DeleteResponse deleteResponse = client.delete(request);</span><br><span class="line"><span class="keyword">if</span> (deleteResponse.getResult() == DocWriteResponse.Result.NOT_FOUND) &#123;</span><br><span class="line">    <span class="comment">//没有找到文档错误 404</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="版本冲突"><a href="#版本冲突" class="headerlink" title="版本冲突"></a>版本冲突</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    DeleteRequest request = <span class="keyword">new</span> DeleteRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"1"</span>).version(<span class="number">2</span>);</span><br><span class="line">    DeleteResponse deleteResponse = client.delete(request);</span><br><span class="line">&#125; <span class="keyword">catch</span> (ElasticsearchException exception) &#123;</span><br><span class="line">    <span class="keyword">if</span> (exception.status() == RestStatus.CONFLICT) &#123;</span><br><span class="line">        <span class="comment">//版本冲突错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/04/elasticsearch/04-get API/" rel="next" title="elasticsearch-get api">
+                <i class="fa fa-chevron-left"></i> elasticsearch-get api
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/08/sql/" rel="prev" title="数据库设计的三大范式">
+                数据库设计的三大范式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">i7baoZ</p>
+              <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete-API"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Delete-API" class="headerlink" title="Delete API"></a>Delete API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete-Request实例化"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#Delete-Request&#x5B9E;&#x4F8B;&#x5316;" class="headerlink" title="Delete Request&#x5B9E;&#x4F8B;&#x5316;"></a>Delete Request&#x5B9E;&#x4F8B;&#x5316;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可选参数"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x53EF;&#x9009;&#x53C2;&#x6570;" class="headerlink" title="&#x53EF;&#x9009;&#x53C2;&#x6570;"></a>&#x53EF;&#x9009;&#x53C2;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#路由"><span class="nav-number">1.1.1.1.</span> <span class="nav-text"><a href="#&#x8DEF;&#x7531;" class="headerlink" title="&#x8DEF;&#x7531;"></a>&#x8DEF;&#x7531;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父级文档id"><span class="nav-number">1.1.1.2.</span> <span class="nav-text"><a href="#&#x7236;&#x7EA7;&#x6587;&#x6863;id" class="headerlink" title="&#x7236;&#x7EA7;&#x6587;&#x6863;id"></a>&#x7236;&#x7EA7;&#x6587;&#x6863;id</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#超时时间"><span class="nav-number">1.1.1.3.</span> <span class="nav-text"><a href="#&#x8D85;&#x65F6;&#x65F6;&#x95F4;" class="headerlink" title="&#x8D85;&#x65F6;&#x65F6;&#x95F4;"></a>&#x8D85;&#x65F6;&#x65F6;&#x95F4;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刷新策略"><span class="nav-number">1.1.1.4.</span> <span class="nav-text"><a href="#&#x5237;&#x65B0;&#x7B56;&#x7565;" class="headerlink" title="&#x5237;&#x65B0;&#x7B56;&#x7565;"></a>&#x5237;&#x65B0;&#x7B56;&#x7565;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本及类型"><span class="nav-number">1.1.1.5.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x53CA;&#x7C7B;&#x578B;" class="headerlink" title="&#x7248;&#x672C;&#x53CA;&#x7C7B;&#x578B;"></a>&#x7248;&#x672C;&#x53CA;&#x7C7B;&#x578B;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DeleteResponse"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#DeleteResponse" class="headerlink" title="DeleteResponse"></a>DeleteResponse</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DeleteResponse方法"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#DeleteResponse&#x65B9;&#x6CD5;" class="headerlink" title="DeleteResponse&#x65B9;&#x6CD5;"></a>DeleteResponse&#x65B9;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#错误处理"><span class="nav-number">1.2.1.1.</span> <span class="nav-text"><a href="#&#x9519;&#x8BEF;&#x5904;&#x7406;" class="headerlink" title="&#x9519;&#x8BEF;&#x5904;&#x7406;"></a>&#x9519;&#x8BEF;&#x5904;&#x7406;</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#404"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text"><a href="#404" class="headerlink" title="404"></a>404</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#版本冲突"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x51B2;&#x7A81;" class="headerlink" title="&#x7248;&#x672C;&#x51B2;&#x7A81;"></a>&#x7248;&#x672C;&#x51B2;&#x7A81;</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">i7baoZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by"> <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info"> theme  &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
