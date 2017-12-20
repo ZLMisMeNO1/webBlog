@@ -272,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/15/bat批处理/开机自启tomcat和redis/">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/07/elasticsearch/07-bulk API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
@@ -291,7 +291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/15/bat批处理/开机自启tomcat和redis/" itemprop="url">开机自启动tomcat和redis</a></h1>
+                <a class="post-title-link" href="/2017/12/07/elasticsearch/07-bulk API/" itemprop="url">elasticsearch-批量处理</a></h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:55:33+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-07T00:00:00+08:00">
+                2017-12-07
               </time>
             
 
@@ -326,8 +326,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/bat/" itemprop="url" rel="index">
-                    <span itemprop="name">bat</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -365,13 +365,50 @@
       
         
           
-            <p>配置文件 conf.ini<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[reids]</span></span><br><span class="line"><span class="attr">redis-port</span>=<span class="number">6379</span></span><br><span class="line"><span class="attr">redis-bin</span>=E:\Redis ;redis所在文件夹</span><br><span class="line"><span class="section">[tomcat-dc]</span></span><br><span class="line"><span class="attr">dc-port</span>=<span class="number">8888</span></span><br><span class="line"><span class="attr">dc-bin</span>=E:\apache-tomcat-dc ;tomcat-dc所在文件夹</span><br><span class="line"><span class="section">[tomcat-app]</span></span><br><span class="line"><span class="attr">app-port</span>=<span class="number">8080</span></span><br><span class="line"><span class="attr">app-bin</span>=E:\apache-tomcat-app ;tomcat-app所在文件夹</span><br></pre></td></tr></table></figure></p>
-<p>start.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem 获取配置文件 使用 %key% 获取值</span></span><br><span class="line">@<span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"><span class="keyword">for</span> /f "usebackq delims=" <span class="variable">%%a</span> <span class="keyword">in</span> (conf.ini) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">set</span> content=<span class="variable">%%a</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> "<span class="variable">!content:~0,1!</span>" == "[" (</span><br><span class="line">        <span class="keyword">for</span> /f "delims=; tokens=<span class="number">1</span>" <span class="variable">%%b</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">            <span class="built_in">set</span> content=<span class="variable">%%b</span></span><br><span class="line">            <span class="keyword">for</span> /f "delims== tokens=<span class="number">1</span>-<span class="number">2</span>" <span class="variable">%%i</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">                <span class="built_in">set</span> key=<span class="variable">%%i</span></span><br><span class="line">                    <span class="built_in">set</span> key=!key: =!</span><br><span class="line">                <span class="built_in">set</span> value=<span class="variable">%%j</span></span><br><span class="line">                    <span class="built_in">set</span> value=!value: =!</span><br><span class="line">                <span class="built_in">set</span> <span class="variable">!key!</span>=<span class="variable">!value!</span></span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"><span class="comment">rem 使用 netstat -ano| findstr 端口号  查看当前端口是否占用</span></span><br><span class="line"><span class="comment">rem 没有占用的话启动相应项目</span></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%redis-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "redis had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> redis..."</span><br><span class="line"><span class="comment">		REM @start "redis-server" cmd /k "%redis-bin%/redis-server.exe %redis-bin%/redis.windows.conf"</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%dc-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-dc had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-dc"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%dc-bin%</span>/bin"</span><br><span class="line">		<span class="built_in">start</span> "tomcat-dc" <span class="built_in">cmd</span> /c  "<span class="variable">%dc-bin%</span>/bin/startup.bat"</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%app-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-app had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-app"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%app-bin%</span>/bin"</span><br><span class="line">		@<span class="built_in">start</span> "tomcat-app" <span class="built_in">cmd</span> /c "<span class="variable">%app-bin%</span>\bin\startup.bat"</span><br></pre></td></tr></table></figure></p>
-<p>由start.bat生成runSystem.bat文件的脚本 generate.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> name=runSystem.bat</span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">echo</span> off &gt; <span class="variable">%name%</span></span><br><span class="line"><span class="comment">rem %cd% 当前目录 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">cd</span> /d <span class="variable">%cd%</span> &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">start</span>.bat &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">pause</span> &gt;&gt; <span class="variable">%name%</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>双击generate.bat生产runSystem.bat文件</li>
-<li>点击Window –&gt; 所有程序 –&gt; 启动 –&gt; 右键打开 –&gt; 将runSystem.bat文件放入 –&gt;重启计算机</li>
+            <h3 id="BULK-API-批量处理"><a href="#BULK-API-批量处理" class="headerlink" title="BULK API 批量处理"></a>BULK API 批量处理</h3><p><strong> <em>批量API仅支持以JSON或SMILE编码的文档。 以任何其他格式提供文档将导致错误。</em> </strong></p>
+<blockquote>
+<p>The Bulk API supports only documents encoded in JSON or SMILE. Providing documents in any other format will result in an error.</p>
+</blockquote>
+<h4 id="BulkRequest"><a href="#BulkRequest" class="headerlink" title="BulkRequest"></a>BulkRequest</h4><p>BulkRequest可以用于使用单一请求多个操作，<br>或多个更新或删除操作。</p>
+<p>添加索引<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BulkRequest request = <span class="keyword">new</span> BulkRequest(); </span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"1"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"foo"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"2"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"bar"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"3"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"baz"</span>));</span><br></pre></td></tr></table></figure></p>
+<p>多个操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BulkRequest request = <span class="keyword">new</span> BulkRequest();</span><br><span class="line">request.add(<span class="keyword">new</span> DeleteRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"3"</span>)); </span><br><span class="line">request.add(<span class="keyword">new</span> UpdateRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"2"</span>) </span><br><span class="line">        .doc(XContentType.JSON,<span class="string">"other"</span>, <span class="string">"test"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"4"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"baz"</span>));</span><br></pre></td></tr></table></figure></p>
+<h5 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h5><h6 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
+<h6 id="刷新策略"><a href="#刷新策略" class="headerlink" title="刷新策略"></a>刷新策略</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL); </span><br><span class="line">request.setRefreshPolicy(<span class="string">"wait_for"</span>);</span><br></pre></td></tr></table></figure>
+<h6 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h6><p>设置在进行索引/更新/删除操作之前必须激活的分片副本的数量。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.waitForActiveShards(<span class="number">2</span>); </span><br><span class="line">request.waitForActiveShards(ActiveShardCount.ALL);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="BulkResponse-批量响应"><a href="#BulkResponse-批量响应" class="headerlink" title="BulkResponse 批量响应"></a>BulkResponse 批量响应</h3><ul>
+<li><p>同步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BulkResponse bulkResponse = client.bulk(request);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">client.bulkAsync(request, <span class="keyword">new</span> ActionListener&lt;BulkResponse&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(BulkResponse bulkResponse)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//执行成功完成时调用。 响应作为参数提供，并包含每个已执行操作的单独结果列表。</span></span><br><span class="line">        <span class="comment">// 请注意，一个或多个操作失败，不会影响其他操作。</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//整个BulkRequest失败时调用。 在这种情况下，引发的异常是作为参数提供的，没有执行任何操作。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>响应是批量的，可以用iterator查看每个具体响应<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (BulkItemResponse bulkItemResponse : bulkResponse) &#123; </span><br><span class="line">    DocWriteResponse itemResponse = bulkItemResponse.getResponse(); </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bulkItemResponse.getOpType() == DocWriteRequest.OpType.INDEX</span><br><span class="line">            || bulkItemResponse.getOpType() == DocWriteRequest.OpType.CREATE) &#123; </span><br><span class="line">        IndexResponse indexResponse = (IndexResponse) itemResponse;</span><br><span class="line">        <span class="comment">//创建索引</span></span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bulkItemResponse.getOpType() == DocWriteRequest.OpType.UPDATE) &#123; </span><br><span class="line">        UpdateResponse updateResponse = (UpdateResponse) itemResponse;</span><br><span class="line">        <span class="comment">//更新文档</span></span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bulkItemResponse.getOpType() == DocWriteRequest.OpType.DELETE) &#123; </span><br><span class="line">        DeleteResponse deleteResponse = (DeleteResponse) itemResponse;</span><br><span class="line">        <span class="comment">//删除文档</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>查看错误信息<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果有一个出现错误，则返回true</span></span><br><span class="line"><span class="keyword">if</span> (bulkResponse.hasFailures()) &#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>也可以进行单独的错误检查<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (BulkItemResponse bulkItemResponse : bulkResponse) &#123;</span><br><span class="line">    <span class="keyword">if</span> (bulkItemResponse.isFailed()) &#123; </span><br><span class="line">        BulkItemResponse.Failure failure = bulkItemResponse.getFailure(); </span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="Bulk-Processor"><a href="#Bulk-Processor" class="headerlink" title="Bulk Processor"></a>Bulk Processor</h3><p>BulkProcessor通过提供一个实用程序类来简化Bulk API的使用，允许在添加到处理器时索引/更新/删除操作被透明地执行。</p>
+<blockquote>
+<p>The BulkProcessor simplifies the usage of the Bulk API by providing a utility class that allows index/update/delete operations to be transparently executed as they are added to the processor.</p>
+</blockquote>
+<p>为了执行请求，BulkProcessor需要3个组件：</p>
+<blockquote>
+<p>In order to execute the requests, the BulkProcessor requires 3 components:</p>
+</blockquote>
+<p>RestHighLevelClient 客户端<br>处理批量请求和响应</p>
+<blockquote>
+<p>  This client is used to execute the BulkRequest and to retrieve the BulkResponse</p>
+</blockquote>
+<p>BulkProcessor.Listener 监听器<br>在批量请求执行或失败的前后监听</p>
+<blockquote>
+<p>  This listener is called before and after every BulkRequest execution or when a BulkRequest failed</p>
+</blockquote>
+<p>ThreadPool 线程池<br>BulkRequest执行使用来自该池的线程完成，允许BulkProcessor以非阻塞方式工作，并在执行批量请求时接受新的索引/更新/删除请求</p>
+<blockquote>
+<p>  The BulkRequest executions are done using threads from this pool, allowing the BulkProcessor to work in a non-blocking manner and to accept new index/update/delete requests while bulk requests are executing.</p>
+</blockquote>
+<p>代码说明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">ThreadPool threadPool = <span class="keyword">new</span> ThreadPool(Settings.EMPTY) ;</span><br><span class="line"></span><br><span class="line">BulkProcessor.Listener listener = <span class="keyword">new</span> BulkProcessor.Listener() &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeBulk</span><span class="params">(<span class="keyword">long</span> executionId, BulkRequest request)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//执行前</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//此方法可以知道在BulkRequest中要执行的操作的数量</span></span><br><span class="line">        <span class="keyword">int</span> numberOfActions = request.numberOfActions(); </span><br><span class="line">        System.out.println(numberOfActions);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterBulk</span><span class="params">(<span class="keyword">long</span> executionId, BulkRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">            Throwable failure)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//执行失败</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterBulk</span><span class="params">(<span class="keyword">long</span> executionId, BulkRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">            BulkResponse response)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//执行成功</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">BulkProcessor.Builder builder = <span class="keyword">new</span> BulkProcessor.Builder(client::bulkAsync, listener, threadPool);</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据当前添加的操作数设置何时刷新新的批量请求（默认为1000，使用-1来禁用它）</span></span><br><span class="line">builder.setBulkActions(<span class="number">500</span>); </span><br><span class="line"><span class="comment">//根据当前添加的操作的大小设置何时刷新新的批量请求（默认为5Mb，使用-1来禁用它）</span></span><br><span class="line">builder.setBulkSize(<span class="keyword">new</span> ByteSizeValue(<span class="number">1L</span>, ByteSizeUnit.MB)); </span><br><span class="line"><span class="comment">//设置允许执行的并发请求数（默认为1，使用0只允许执行一个请求）</span></span><br><span class="line">builder.setConcurrentRequests(<span class="number">0</span>); </span><br><span class="line"><span class="comment">//设置时间间隔，如果超过时间间隔，将会清理未执行的请求</span></span><br><span class="line">builder.setFlushInterval(TimeValue.timeValueSeconds(<span class="number">10L</span>)); </span><br><span class="line"><span class="comment">//设置重试策略，最初等待1秒钟，然后重试3次</span></span><br><span class="line">builder.setBackoffPolicy(BackoffPolicy.constantBackoff(TimeValue.timeValueSeconds(<span class="number">1L</span>), <span class="number">3</span>)); </span><br><span class="line"></span><br><span class="line">BulkProcessor bulkProcessor = builder.build();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">IndexRequest one = <span class="keyword">new</span> IndexRequest(<span class="string">"person"</span>, <span class="string">"info"</span>, <span class="string">"20"</span>).</span><br><span class="line">        source(XContentType.JSON, <span class="string">"title"</span>, <span class="string">"In which order are my Elasticsearch queries executed?"</span>);</span><br><span class="line">IndexRequest two = <span class="keyword">new</span> IndexRequest(<span class="string">"person"</span>, <span class="string">"info"</span>, <span class="string">"21"</span>)</span><br><span class="line">        .source(XContentType.JSON, <span class="string">"title"</span>, <span class="string">"Current status and upcoming changes in Elasticsearch"</span>);</span><br><span class="line">IndexRequest three = <span class="keyword">new</span> IndexRequest(<span class="string">"person"</span>, <span class="string">"info"</span>, <span class="string">"22"</span>)</span><br><span class="line">        .source(XContentType.JSON, <span class="string">"title"</span>, <span class="string">"The Future of Federated Search in Elasticsearch"</span>);</span><br><span class="line"></span><br><span class="line">bulkProcessor.add(one);</span><br><span class="line">bulkProcessor.add(two);</span><br><span class="line">bulkProcessor.add(three);</span><br><span class="line"></span><br><span class="line"><span class="comment">//awaitClose方法可以 在所有请求都完成 或 指定的时间内过去了  后关闭bulkProcessor</span></span><br><span class="line"><span class="comment">//如果所有批量请求都完成，则该方法返回true，如果在所有批量请求完成之前经过了等待时间，则返回false</span></span><br><span class="line"><span class="keyword">boolean</span> terminated = bulkProcessor.awaitClose(<span class="number">30L</span>, TimeUnit.SECONDS);</span><br><span class="line">System.out.println(terminated);</span><br><span class="line"><span class="comment">//也可以使用clse()方法立即关闭processor</span></span><br><span class="line"><span class="comment">//这两种方法在关闭处理器之前刷新添加到处理器的请求，并禁止添加新的请求。</span></span><br><span class="line"><span class="comment">//bulkProcessor.close();</span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -420,7 +457,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/15/input/">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/06/elasticsearch/06-update API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
@@ -439,7 +476,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/15/input/" itemprop="url">监听input textarea改变事件</a></h1>
+                <a class="post-title-link" href="/2017/12/06/elasticsearch/06-update API/" itemprop="url">elasticsearch-修改文档</a></h1>
         
 
         <div class="post-meta">
@@ -451,8 +488,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T10:37:09+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T00:00:00+08:00">
+                2017-12-06
               </time>
             
 
@@ -474,8 +511,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
                   </a>
                 </span>
 
@@ -513,158 +550,73 @@
       
         
           
-            <h4 id="监听input-textarea改变事件"><a href="#监听input-textarea改变事件" class="headerlink" title="监听input\textarea改变事件"></a>监听input\textarea改变事件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"txtInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"txtArea"</span> &gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="引入jQuery库"><a href="#引入jQuery库" class="headerlink" title="引入jQuery库"></a>引入jQuery库</h4><h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#txtInput"</span>).bind(<span class="string">'input propertychange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">'#txtArea'</span>).bind(<span class="string">'input propertychange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="主要格式"><a href="#主要格式" class="headerlink" title="主要格式"></a>主要格式</h4><blockquote>
-<p>$(selecter).bind(‘input propertychange’,callback);</p>
+            <h2 id="Update-API-更新"><a href="#Update-API-更新" class="headerlink" title="Update API 更新"></a>Update API 更新</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>①.先查询一个存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>②.查询一个不存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"17"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Update-Request-实例化"><a href="#Update-Request-实例化" class="headerlink" title="Update Request 实例化"></a>Update Request 实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateRequest update = <span class="keyword">new</span> UpdateRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<p>更新API允许通过使用脚本或传递部分文档来更新现有文档。</p>
+<blockquote>
+<p>The Update API allows to update an existing document by using a script or by passing a partial document.</p>
 </blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/08/sql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="i7baoZ">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="积累">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/08/sql/" itemprop="url">数据库设计的三大范式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T14:15:59+08:00">
-                2017-12-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>主要有六种范式：第一范式、第二范式、第三范式、BC范式、第四范式和第五范式。满足最低要求的叫第一范式，简称1NF。在第一范式基础上进一步满足一些要求的为第二范式，简称2NF。其余依此类推。</p>
-<p>范式可以避免数据冗余，减少数据库的空间，减轻维护数据完整性的麻烦，但是操作困难，因为需要联系多个表才能得到所需要数据，而且范式越高性能就会越差。要权衡是否使用更高范式是比较麻烦的，一般在项目中，用得最多的也就是第三范式，我认为使用到第三范式也就足够了，性能好而且方便管理数据。</p>
-<p>简单的说，<br>第一范式就是原子性，字段不可再分割；<br>第二范式记录的唯一性约束，要求记录有唯一的标识，即实体的唯一性。<br>第三范式对字段冗余性的约束，即任何字段不能由其他字段派生出来。</p>
+<h4 id="使用脚本"><a href="#使用脚本" class="headerlink" title="使用脚本"></a>使用脚本</h4><blockquote>
+<p>The script can be provided as an inline script:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; parameters = singletonMap(<span class="string">"count"</span>, <span class="number">4</span>); </span><br><span class="line"></span><br><span class="line">Script inline = <span class="keyword">new</span> Script(ScriptType.INLINE, <span class="string">"painless"</span>, <span class="string">"ctx._source.field += params.count"</span>, parameters);  </span><br><span class="line">request.script(inline);</span><br></pre></td></tr></table></figure></p>
+<p>Or as a stored script:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Script stored =</span><br><span class="line">        <span class="keyword">new</span> Script(ScriptType.STORED, <span class="keyword">null</span>, <span class="string">"increment-field"</span>, parameters);  </span><br><span class="line">request.script(stored);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>没有冗余的数据库设计可以做到。但是，没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低凡是标准，适当保留冗余数据。<br>具体的做法是：在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加冗余字段，允许冗余。</p>
+<h4 id="局部更新"><a href="#局部更新" class="headerlink" title="局部更新"></a>局部更新</h4><blockquote>
+<p>局部更新需要提供部分文档内容，可以使用 <a href="../../../03/elasticsearch/03-Index API/index.html">IndexApi</a> 中四种方法生成文档。</p>
+</blockquote>
+<h4 id="Upserts"><a href="#Upserts" class="headerlink" title="Upserts"></a>Upserts</h4><p>如果文档尚不存在，则可以使用upsert方法定义一些将作为新文档插入的内容：</p>
+<blockquote>
+<p>If the document does not already exist, it is possible to define some content that will be inserted as a new document using the upsert method.</p>
+</blockquote>
+<p>代码说明<br>通过②方式确定id为17的文档找不到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span> <span class="params">()</span>  </span>&#123;</span><br><span class="line">    UpdateRequest request = <span class="keyword">new</span> UpdateRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"17"</span>);</span><br><span class="line">    Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">    map.put(<span class="string">"name"</span>, <span class="string">"John"</span>);</span><br><span class="line">    map.put(<span class="string">"age"</span>, <span class="number">26</span>);</span><br><span class="line">    map.put(<span class="string">"msg"</span>, <span class="string">"very good!"</span>);</span><br><span class="line">    request.doc(map);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果没有找到文档，则新增</span></span><br><span class="line">    <span class="comment">//这里的map 同样适用于4中生成文档的方式</span></span><br><span class="line">    update.upsert(map);</span><br><span class="line"></span><br><span class="line">    UpdateResponse response;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        response = client.update(request);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ElasticsearchException  e) &#123;</span><br><span class="line">        System.out.println(e.status());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.version(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Timeout to wait for primary shard to become available as a TimeValue<br>Timeout to wait for primary shard to become available as a String</p>
+</blockquote>
+<h5 id="刷新策略"><a href="#刷新策略" class="headerlink" title="刷新策略"></a>刷新策略</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL); </span><br><span class="line">request.setRefreshPolicy(<span class="string">"wait_for"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Refresh policy as a WriteRequest.RefreshPolicy instance<br>Refresh policy as a String</p>
+</blockquote>
+<h5 id="冲突时更新动作进行几次"><a href="#冲突时更新动作进行几次" class="headerlink" title="冲突时更新动作进行几次"></a>冲突时更新动作进行几次</h5><p>要更新的文档在更新过程中被另一个操作修改，则重试更新操作的次数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.retryOnConflict(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="源搜索"><a href="#源搜索" class="headerlink" title="源搜索"></a>源搜索</h5><p>默认为true<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.fetchSource(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="局部查询"><a href="#局部查询" class="headerlink" title="局部查询"></a>局部查询</h5><p>同getapi中 <em>局部查询</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String[] includes = <span class="keyword">new</span> String[]&#123;<span class="string">"updated"</span>, <span class="string">"r*"</span>&#125;;</span><br><span class="line">String[] excludes = Strings.EMPTY_ARRAY;</span><br><span class="line">request.fetchSource(<span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes)); </span><br><span class="line"></span><br><span class="line">String[] includes = Strings.EMPTY_ARRAY;</span><br><span class="line">String[] excludes = <span class="keyword">new</span> String[]&#123;<span class="string">"updated"</span>&#125;;</span><br><span class="line">request.fetchSource(<span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes));</span><br></pre></td></tr></table></figure></p>
+<h5 id="禁用无操作检测"><a href="#禁用无操作检测" class="headerlink" title="禁用无操作检测"></a>禁用无操作检测</h5><p>无操作<br>该文档没有收到update操作的影响，也就是在该文档上没有任何操作执行</p>
+<blockquote>
+<p>the case where the document was not impacted by the update, ie no operation (noop) was executed on the document</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.detectNoop(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="脚本控制"><a href="#脚本控制" class="headerlink" title="脚本控制"></a>脚本控制</h5><p>无论文档是否存在，脚本都必须运行，即如果文档不存在，则脚本负责创建文档。</p>
+<blockquote>
+<p>Indicate that the script must run regardless of whether the document exists or not, ie the script takes care of creating the document if it does not already exist.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.scriptedUpsert(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="upsert控制"><a href="#upsert控制" class="headerlink" title="upsert控制"></a>upsert控制</h5><p>如果文档不存在，那么就根据给定的局部文档创建新文档。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.docAsUpsert(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id=""><a href="#" class="headerlink" title="???"></a>???</h5><p>设置在继续更新操作之前必须激活的分片副本的数量。</p>
+<blockquote>
+<p>Sets the number of shard copies that must be active before proceeding with the update operation.</p>
+</blockquote>
+<p>作为ActiveShardCount提供的分片副本数：可以是ActiveShardCount.ALL，ActiveShardCount.ONE或ActiveShardCount.DEFAULT（默认值）</p>
+<blockquote>
+<p>Number of shard copies provided as a ActiveShardCount: can be ActiveShardCount.ALL, ActiveShardCount.ONE or ActiveShardCount.DEFAULT (default)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.waitForActiveShards(<span class="number">2</span>); </span><br><span class="line">request.waitForActiveShards(ActiveShardCount.ALL);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="UpdateResponse"><a href="#UpdateResponse" class="headerlink" title="UpdateResponse"></a>UpdateResponse</h3><h4 id="执行方式"><a href="#执行方式" class="headerlink" title="执行方式"></a>执行方式</h4><ul>
+<li><p>同步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateResponse updateResponse = client.update(request);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">client.updateAsync(request, <span class="keyword">new</span> ActionListener&lt;UpdateResponse&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(UpdateResponse updateResponse)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//更新成功</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//更新失败</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="响应参数"><a href="#响应参数" class="headerlink" title="响应参数"></a>响应参数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">String index = updateResponse.getIndex();</span><br><span class="line">String type = updateResponse.getType();</span><br><span class="line">String id = updateResponse.getId();</span><br><span class="line"><span class="keyword">long</span> version = updateResponse.getVersion();</span><br><span class="line"><span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.CREATED) &#123;</span><br><span class="line">    <span class="comment">// 文档创建 (upsert)</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.UPDATED) &#123;</span><br><span class="line">    <span class="comment">// 文档更新</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.DELETED) &#123;</span><br><span class="line">    <span class="comment">// 文档删除</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.NOOP) &#123;</span><br><span class="line">    <span class="comment">//文档无操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果使用了 fetchSource 那么可以使用如下方法打印更新后的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GetResult result = updateResponse.getGetResult(); </span><br><span class="line"><span class="keyword">if</span> (result.isExists()) &#123;</span><br><span class="line">    String sourceAsString = result.sourceAsString(); </span><br><span class="line">    Map&lt;String, Object&gt; sourceAsMap = result.sourceAsMap(); </span><br><span class="line">    <span class="keyword">byte</span>[] sourceAsBytes = result.source(); </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//处理文档来源不存在于响应中的场景（默认情况下是这种情况）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分片失败情况<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ReplicationResponse.ShardInfo shardInfo = updateResponse.getShardInfo();</span><br><span class="line"><span class="keyword">if</span> (shardInfo.getTotal() != shardInfo.getSuccessful()) &#123;</span><br><span class="line">    <span class="comment">//成功更新的分片数量不等于分片总数的情况</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (shardInfo.getFailed() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (ReplicationResponse.ShardInfo.Failure failure : shardInfo.getFailures()) &#123;</span><br><span class="line">        String reason = failure.reason(); </span><br><span class="line">        <span class="comment">//处理潜在的失败情况</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>404找不到文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">UpdateRequest request = <span class="keyword">new</span> UpdateRequest(<span class="string">"posts"</span>, <span class="string">"type"</span>, <span class="string">"does_not_exist"</span>).doc(<span class="string">"field"</span>, <span class="string">"value"</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    UpdateResponse updateResponse = client.update(request);</span><br><span class="line">&#125; <span class="keyword">catch</span> (ElasticsearchException e) &#123;</span><br><span class="line">    <span class="keyword">if</span> (e.status() == RestStatus.NOT_FOUND) &#123;</span><br><span class="line">        <span class="comment">//404</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>文档版本冲突</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    UpdateResponse updateResponse = client.update(request);</span><br><span class="line">&#125; <span class="keyword">catch</span>(ElasticsearchException e) &#123;</span><br><span class="line">    <span class="keyword">if</span> (e.status() == RestStatus.CONFLICT) &#123;</span><br><span class="line">        <span class="comment">//版本冲突</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -732,7 +684,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/05/elasticsearch/05-delete API/" itemprop="url">elasticsearch-delete api</a></h1>
+                <a class="post-title-link" href="/2017/12/05/elasticsearch/05-delete API/" itemprop="url">elasticsearch-删除文档</a></h1>
         
 
         <div class="post-meta">
@@ -806,9 +758,9 @@
       
         
           
-            <h2 id="Delete-API"><a href="#Delete-API" class="headerlink" title="Delete API"></a>Delete API</h2><h3 id="Delete-Request实例化"><a href="#Delete-Request实例化" class="headerlink" title="Delete Request实例化"></a>Delete Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeleteRequest request = <span class="keyword">new</span> DeleteRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
-<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
+            <h2 id="Delete-API-删除"><a href="#Delete-API-删除" class="headerlink" title="Delete API 删除"></a>Delete API 删除</h2><h3 id="Delete-Request实例化"><a href="#Delete-Request实例化" class="headerlink" title="Delete Request实例化"></a>Delete Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeleteRequest request = <span class="keyword">new</span> DeleteRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
 <h5 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Timeout to wait for primary shard to become available as a TimeValue<br>Timeout to wait for primary shard to become available as a String</p>
@@ -896,7 +848,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/04/elasticsearch/04-get API/" itemprop="url">elasticsearch-get api</a></h1>
+                <a class="post-title-link" href="/2017/12/04/elasticsearch/04-get API/" itemprop="url">elasticsearch-获取文档</a></h1>
         
 
         <div class="post-meta">
@@ -970,10 +922,10 @@
       
         
           
-            <h2 id="Get-API"><a href="#Get-API" class="headerlink" title="Get API"></a>Get API</h2><h3 id="Get-Request实例化"><a href="#Get-Request实例化" class="headerlink" title="Get Request实例化"></a>Get Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetRequest request = <span class="keyword">new</span> GetRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+            <h2 id="Get-API-获取"><a href="#Get-API-获取" class="headerlink" title="Get API 获取"></a>Get API 获取</h2><h3 id="Get-Request实例化"><a href="#Get-Request实例化" class="headerlink" title="Get Request实例化"></a>Get Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetRequest request = <span class="keyword">new</span> GetRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
 <p>e.g.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest);</span><br><span class="line">    System.out.println(getResponse.getSourceAsString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打印结果</span></span><br><span class="line">    <span class="comment">//&#123;"id":"1","name":"name_1","age":1,"updateTime":1513654831475,"birth":1513654216715,"hight":0.6375151,"weight":0.4946818126143968,"isBoy":false&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="设置版本号"><a href="#设置版本号" class="headerlink" title="设置版本号"></a>设置版本号</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.version(<span class="keyword">long</span> version);</span><br></pre></td></tr></table></figure>
-<h5 id="设置要抓取的源数据"><a href="#设置要抓取的源数据" class="headerlink" title="设置要抓取的源数据"></a>设置要抓取的源数据</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.fetchSourceContext(FetchSourceContext context);</span><br></pre></td></tr></table></figure>
+<h5 id="局部查询"><a href="#局部查询" class="headerlink" title="局部查询"></a>局部查询</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.fetchSourceContext(FetchSourceContext context);</span><br></pre></td></tr></table></figure>
 <h6 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] includes = <span class="keyword">new</span> String[]&#123;<span class="string">"name"</span>,<span class="string">"hight"</span>,<span class="string">"updateTime"</span>&#125;;</span><br><span class="line">String[] excludes = Strings.EMPTY_ARRAY;</span><br><span class="line">FetchSourceContext fetchSourceContext = <span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes);</span><br><span class="line">getRequest.fetchSourceContext(fetchSourceContext); </span><br><span class="line">GetResponse getResponse = client.get(getRequest);</span><br><span class="line">System.out.println(<span class="string">" get: "</span> + getResponse.getSourceAsString());</span><br><span class="line"><span class="comment">//只获取检索到的数据中 name height updateTime 字段的值</span></span><br><span class="line"><span class="comment">//打印结果  get: &#123;"name":"name_3","hight":0.84175926,"updateTime":1513654831475&#125;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] includes = Strings.EMPTY_ARRAY;</span><br><span class="line">String[] excludes = <span class="keyword">new</span> String[]&#123;<span class="string">"name"</span>,<span class="string">"hight"</span>,<span class="string">"updateTime"</span>&#125;;</span><br><span class="line">FetchSourceContext fetchSourceContext = <span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes);</span><br><span class="line">getRequest.fetchSourceContext(fetchSourceContext);</span><br><span class="line">GetResponse getResponse = client.get(getRequest);</span><br><span class="line">System.out.println(<span class="string">" get: "</span> + getResponse.getSourceAsString());</span><br><span class="line"><span class="comment">//与上个正好相反，获取检索到的数据中除了 name height updateTime字段其他字段的值</span></span><br><span class="line"><span class="comment">//打印结果  get: &#123;"birth":1513654216715,"weight":0.3806846418323202,"id":"3","age":3,"isBoy":false&#125;</span></span><br></pre></td></tr></table></figure>
 <h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
@@ -1064,7 +1016,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/03/elasticsearch/03-Index API/" itemprop="url">elasticsearch-index api</a></h1>
+                <a class="post-title-link" href="/2017/12/03/elasticsearch/03-Index API/" itemprop="url">elasticsearch-建立索引</a></h1>
         
 
         <div class="post-meta">
@@ -1138,7 +1090,7 @@
       
         
           
-            <p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.0/java-docs-index.html" target="_blank" rel="noopener">官方文档–Index API</a></p>
+            <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.0/java-docs-index.html" target="_blank" rel="noopener">官方文档–Index API</a></p>
 <h4 id="生成JSON文档"><a href="#生成JSON文档" class="headerlink" title="生成JSON文档"></a>生成JSON文档</h4><p>生成方式</p>
 <p>1.手动生成字符串形式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">jsonSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	String jsonSource = <span class="string">"&#123;"</span> +</span><br><span class="line">	        <span class="string">"\"country\":\"China VS US\","</span> +</span><br><span class="line">	        <span class="string">"\"startTime\":\""</span>+<span class="keyword">new</span> Date()+<span class="string">"\","</span> +</span><br><span class="line">	        <span class="string">"\"message\":\"China is ok !\""</span> +</span><br><span class="line">	        <span class="string">"&#125;"</span>;</span><br><span class="line">	System.out.println(jsonSource);</span><br><span class="line">	<span class="keyword">return</span> jsonSource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>2.使用自己的bean<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">        get/set ...</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">byte</span>[] byteSource() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	TestBean testBean = <span class="keyword">new</span> TestBean();</span><br><span class="line">	testBean.setAge(<span class="number">11</span>);</span><br><span class="line">	testBean.setId(<span class="string">"abcdefg"</span>);</span><br><span class="line">	testBean.setName(<span class="string">"i7baoz"</span>);</span><br><span class="line">	ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">	<span class="keyword">return</span> mapper.writeValueAsBytes(testBean);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -1308,7 +1260,19 @@
       
         
           
-            <h4 id="Java-High-Level-Rest-Client"><a href="#Java-High-Level-Rest-Client" class="headerlink" title="Java High Level Rest Client"></a>Java High Level Rest Client</h4><p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank" rel="noopener">关于javaHighLevelRestClien</a></p>
+            <h4 id="Java-High-Level-Rest-Client-高级rest客户端"><a href="#Java-High-Level-Rest-Client-高级rest客户端" class="headerlink" title="Java High Level Rest Client 高级rest客户端"></a>Java High Level Rest Client 高级rest客户端</h4><p>我们计划在Elasticsearch 7.0 中弃用TransportClient，在Elasticsearch 8.0时完全移除。相反，推荐使用the Java High Level REST Client，它执行HTTP请求而不是序列化java请求。</p>
+<blockquote>
+<p>We plan on deprecating the TransportClient in Elasticsearch 7.0 and removing it completely in 8.0. Instead, you should be using the Java High Level REST Client, which executes HTTP requests rather than serialized Java requests. </p>
+</blockquote>
+<p>java高级rest客户端目前支持更常用的api，但仍然还有更多需要添加的东西。</p>
+<blockquote>
+<p>The Java High Level REST Client currently has support for the more commonly used APIs, but there are a lot more that still need to be added. </p>
+</blockquote>
+<p>任何缺少的api都可以通过使用具有json请求和响应主体的低级java rest客户端来实现。</p>
+<blockquote>
+<p>Any missing APIs can always be implemented today by using the low level Java REST Client with JSON request and response bodies.</p>
+</blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html" target="_blank" rel="noopener">关于javaHighLevelRestClien</a></p>
 <blockquote>
 <p>The Java High Level REST Client works on top of the Java Low Level REST client. Its main goal is to expose API specific methods, that accept request objects as an argument and return response objects, so that request marshalling and response un-marshalling is handled by the client itself.</p>
 </blockquote>
@@ -1325,14 +1289,14 @@
 <p>A RestHighLevelClient instance needs a REST low-level client builder to be built as follows:</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> RestHighLevelClient client = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">//创建客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    client = <span class="keyword">new</span> RestHighLevelClient(</span><br><span class="line">        RestClient.builder(</span><br><span class="line">            <span class="keyword">new</span> HttpHost(<span class="string">"localhost"</span>,<span class="number">9200</span>,<span class="string">"http"</span>);</span><br><span class="line">        );</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>高级客户端将在内部创建用于基于提供的构建器执行请求的低级客户端，并管理其生命周期。</p>
 <blockquote>
 <p>The high-level client will internally create the low-level client used to perform requests based on the provided builder, and manage its lifecycle.</p>
 </blockquote>
-<p>高级客户端将在内部创建用于基于提供的构建器执行请求的低级客户端，并管理其生命周期。</p>
+<p>当不再需要高级客户端实例时，需要关闭高级客户端实例，以便使用的所有资源以及底层http客户端实例及其线程都得到正确释放。 这可以通过close方法来完成，这将关闭RestClient的内部实例。</p>
 <blockquote>
 <p>The high-level client instance needs to be closed when no longer needed so that all the resources used by it get properly released, as well as the underlying http client instance and its threads. This can be done through the close method, which will close the internal RestClient instance.</p>
 </blockquote>
-<p>当不再需要高级客户端实例时，需要关闭高级客户端实例，以便使用的所有资源以及底层http客户端实例及其线程都得到正确释放。 这可以通过close方法来完成，这将关闭RestClient的内部实例。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//关闭客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clientClose</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( !Objects.isNull(client) ) &#123;</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong><em>此处 client 会在以后的文章中使用</em></strong></p>
 
@@ -1596,7 +1560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

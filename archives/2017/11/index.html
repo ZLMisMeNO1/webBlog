@@ -370,10 +370,11 @@
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html" target="_blank" rel="noopener">官方文档</a></p>
 <p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="noopener">官方中文文档</a></p>
 <p><a href="https://www.elastic.co/guide/en/elasticsearch/client/index.html" target="_blank" rel="noopener">官方客户端api</a></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="noopener">国内文档</a></p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/6.0/java-rest-high-document-delete.html" target="_blank" rel="noopener">高级rest客户端文档</a></p>
 <hr>
 <h4 id="相关中文简介以及简单操作"><a href="#相关中文简介以及简单操作" class="headerlink" title="相关中文简介以及简单操作"></a>相关中文简介以及简单操作</h4><p><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">阮一峰-全文搜索引擎 Elasticsearch 入门教程</a></p>
-<h4 id="谷歌翻译"><a href="#谷歌翻译" class="headerlink" title="谷歌翻译"></a>谷歌翻译</h4><p><a href="https://translate.google.cn/" target="_blank" rel="noopener">谷歌翻译</a></p>
-<h5 id="个人理解elasticsearch术语"><a href="#个人理解elasticsearch术语" class="headerlink" title="个人理解elasticsearch术语"></a>个人理解elasticsearch术语</h5><table>
+<h4 id="个人理解elasticsearch术语"><a href="#个人理解elasticsearch术语" class="headerlink" title="个人理解elasticsearch术语"></a>个人理解elasticsearch术语</h4><table>
 <thead>
 <tr>
 <th>关系型数据库</th>
@@ -400,6 +401,447 @@
 <p>Indices created in Elasticsearch 6.0.0 or later may only contain a single mapping type. Indices created in 5.x with multiple mapping types will continue to function as before in Elasticsearch 6.x. Mapping types will be completely removed in Elasticsearch 7.0.0.</p>
 <p>将会在7.0.0. 后的版本移除</p>
 </blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/11/04/bat批处理/开机自启tomcat和redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/04/bat批处理/开机自启tomcat和redis/" itemprop="url">开机自启动tomcat和redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T00:00:00+08:00">
+                2017-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bat/" itemprop="url" rel="index">
+                    <span itemprop="name">bat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>配置文件 conf.ini<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[reids]</span></span><br><span class="line"><span class="attr">redis-port</span>=<span class="number">6379</span></span><br><span class="line"><span class="attr">redis-bin</span>=E:\Redis ;redis所在文件夹</span><br><span class="line"><span class="section">[tomcat-dc]</span></span><br><span class="line"><span class="attr">dc-port</span>=<span class="number">8888</span></span><br><span class="line"><span class="attr">dc-bin</span>=E:\apache-tomcat-dc ;tomcat-dc所在文件夹</span><br><span class="line"><span class="section">[tomcat-app]</span></span><br><span class="line"><span class="attr">app-port</span>=<span class="number">8080</span></span><br><span class="line"><span class="attr">app-bin</span>=E:\apache-tomcat-app ;tomcat-app所在文件夹</span><br></pre></td></tr></table></figure></p>
+<p>start.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem 获取配置文件 使用 %key% 获取值</span></span><br><span class="line">@<span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"><span class="keyword">for</span> /f "usebackq delims=" <span class="variable">%%a</span> <span class="keyword">in</span> (conf.ini) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">set</span> content=<span class="variable">%%a</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> "<span class="variable">!content:~0,1!</span>" == "[" (</span><br><span class="line">        <span class="keyword">for</span> /f "delims=; tokens=<span class="number">1</span>" <span class="variable">%%b</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">            <span class="built_in">set</span> content=<span class="variable">%%b</span></span><br><span class="line">            <span class="keyword">for</span> /f "delims== tokens=<span class="number">1</span>-<span class="number">2</span>" <span class="variable">%%i</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">                <span class="built_in">set</span> key=<span class="variable">%%i</span></span><br><span class="line">                    <span class="built_in">set</span> key=!key: =!</span><br><span class="line">                <span class="built_in">set</span> value=<span class="variable">%%j</span></span><br><span class="line">                    <span class="built_in">set</span> value=!value: =!</span><br><span class="line">                <span class="built_in">set</span> <span class="variable">!key!</span>=<span class="variable">!value!</span></span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"><span class="comment">rem 使用 netstat -ano| findstr 端口号  查看当前端口是否占用</span></span><br><span class="line"><span class="comment">rem 没有占用的话启动相应项目</span></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%redis-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "redis had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> redis..."</span><br><span class="line"><span class="comment">		REM @start "redis-server" cmd /k "%redis-bin%/redis-server.exe %redis-bin%/redis.windows.conf"</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%dc-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-dc had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-dc"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%dc-bin%</span>/bin"</span><br><span class="line">		<span class="built_in">start</span> "tomcat-dc" <span class="built_in">cmd</span> /c  "<span class="variable">%dc-bin%</span>/bin/startup.bat"</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%app-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-app had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-app"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%app-bin%</span>/bin"</span><br><span class="line">		@<span class="built_in">start</span> "tomcat-app" <span class="built_in">cmd</span> /c "<span class="variable">%app-bin%</span>\bin\startup.bat"</span><br></pre></td></tr></table></figure></p>
+<p>由start.bat生成runSystem.bat文件的脚本 generate.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> name=runSystem.bat</span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">echo</span> off &gt; <span class="variable">%name%</span></span><br><span class="line"><span class="comment">rem %cd% 当前目录 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">cd</span> /d <span class="variable">%cd%</span> &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">start</span>.bat &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">pause</span> &gt;&gt; <span class="variable">%name%</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>双击generate.bat生产runSystem.bat文件</li>
+<li>点击Window –&gt; 所有程序 –&gt; 启动 –&gt; 右键打开 –&gt; 将runSystem.bat文件放入 –&gt;重启计算机</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/11/03/input/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/03/input/" itemprop="url">监听input textarea改变事件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T00:00:00+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="监听input-textarea改变事件"><a href="#监听input-textarea改变事件" class="headerlink" title="监听input\textarea改变事件"></a>监听input\textarea改变事件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"txtInput"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">"txtArea"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="引入jQuery库"><a href="#引入jQuery库" class="headerlink" title="引入jQuery库"></a>引入jQuery库</h4><h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#txtInput"</span>).bind(<span class="string">'input propertychange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">'#txtArea'</span>).bind(<span class="string">'input propertychange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).val())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="主要格式"><a href="#主要格式" class="headerlink" title="主要格式"></a>主要格式</h4><blockquote>
+<p>$(selecter).bind(‘input propertychange’,callback);</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/11/02/sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/02/sql/" itemprop="url">数据库设计的三大范式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T00:00:00+08:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>主要有六种范式：第一范式、第二范式、第三范式、BC范式、第四范式和第五范式。满足最低要求的叫第一范式，简称1NF。在第一范式基础上进一步满足一些要求的为第二范式，简称2NF。其余依此类推。</p>
+<p>范式可以避免数据冗余，减少数据库的空间，减轻维护数据完整性的麻烦，但是操作困难，因为需要联系多个表才能得到所需要数据，而且范式越高性能就会越差。要权衡是否使用更高范式是比较麻烦的，一般在项目中，用得最多的也就是第三范式，我认为使用到第三范式也就足够了，性能好而且方便管理数据。</p>
+<p>简单的说，<br>第一范式就是原子性，字段不可再分割；<br>第二范式记录的唯一性约束，要求记录有唯一的标识，即实体的唯一性。<br>第三范式对字段冗余性的约束，即任何字段不能由其他字段派生出来。</p>
+</blockquote>
+<p>没有冗余的数据库设计可以做到。但是，没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低凡是标准，适当保留冗余数据。<br>具体的做法是：在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加冗余字段，允许冗余。</p>
 
           
         
@@ -481,7 +923,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

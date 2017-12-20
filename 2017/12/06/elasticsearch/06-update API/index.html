@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Update API 更新准备工作①.先查询一个存在的文档1234567891011@Testpublic void query() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,&quot;1&quot;);    GetResponse getResponse = client.get(get">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch-修改文档">
+<meta property="og:url" content="http://www.i7baoz.cn/2017/12/06/elasticsearch/06-update API/index.html">
+<meta property="og:site_name" content="积累">
+<meta property="og:description" content="Update API 更新准备工作①.先查询一个存在的文档1234567891011@Testpublic void query() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,&quot;1&quot;);    GetResponse getResponse = client.get(get">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-20T06:33:48.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch-修改文档">
+<meta name="twitter:description" content="Update API 更新准备工作①.先查询一个存在的文档1234567891011@Testpublic void query() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,&quot;1&quot;);    GetResponse getResponse = client.get(get">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.i7baoz.cn/2017/12/06/elasticsearch/06-update API/21"/>
+
+
+
+
+
+  <title>elasticsearch-修改文档 | 积累</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">积累</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不积跬步无以至千里</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            所有
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-plan">
+          <a href="/plan/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-thumbs-o-up"></i> <br />
+            
+            计划
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2017/12/06/elasticsearch/06-update API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch-修改文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T00:00:00+08:00">
+                2017-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Update-API-更新"><a href="#Update-API-更新" class="headerlink" title="Update API 更新"></a>Update API 更新</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>①.先查询一个存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>②.查询一个不存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"17"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Update-Request-实例化"><a href="#Update-Request-实例化" class="headerlink" title="Update Request 实例化"></a>Update Request 实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateRequest update = <span class="keyword">new</span> UpdateRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<p>更新API允许通过使用脚本或传递部分文档来更新现有文档。</p>
+<blockquote>
+<p>The Update API allows to update an existing document by using a script or by passing a partial document.</p>
+</blockquote>
+<h4 id="使用脚本"><a href="#使用脚本" class="headerlink" title="使用脚本"></a>使用脚本</h4><blockquote>
+<p>The script can be provided as an inline script:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; parameters = singletonMap(<span class="string">"count"</span>, <span class="number">4</span>); </span><br><span class="line"></span><br><span class="line">Script inline = <span class="keyword">new</span> Script(ScriptType.INLINE, <span class="string">"painless"</span>, <span class="string">"ctx._source.field += params.count"</span>, parameters);  </span><br><span class="line">request.script(inline);</span><br></pre></td></tr></table></figure></p>
+<p>Or as a stored script:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Script stored =</span><br><span class="line">        <span class="keyword">new</span> Script(ScriptType.STORED, <span class="keyword">null</span>, <span class="string">"increment-field"</span>, parameters);  </span><br><span class="line">request.script(stored);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="局部更新"><a href="#局部更新" class="headerlink" title="局部更新"></a>局部更新</h4><blockquote>
+<p>局部更新需要提供部分文档内容，可以使用 <a href="../../../03/elasticsearch/03-Index API/index.html">IndexApi</a> 中四种方法生成文档。</p>
+</blockquote>
+<h4 id="Upserts"><a href="#Upserts" class="headerlink" title="Upserts"></a>Upserts</h4><p>如果文档尚不存在，则可以使用upsert方法定义一些将作为新文档插入的内容：</p>
+<blockquote>
+<p>If the document does not already exist, it is possible to define some content that will be inserted as a new document using the upsert method.</p>
+</blockquote>
+<p>代码说明<br>通过②方式确定id为17的文档找不到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span> <span class="params">()</span>  </span>&#123;</span><br><span class="line">    UpdateRequest request = <span class="keyword">new</span> UpdateRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"17"</span>);</span><br><span class="line">    Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">    map.put(<span class="string">"name"</span>, <span class="string">"John"</span>);</span><br><span class="line">    map.put(<span class="string">"age"</span>, <span class="number">26</span>);</span><br><span class="line">    map.put(<span class="string">"msg"</span>, <span class="string">"very good!"</span>);</span><br><span class="line">    request.doc(map);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果没有找到文档，则新增</span></span><br><span class="line">    <span class="comment">//这里的map 同样适用于4中生成文档的方式</span></span><br><span class="line">    update.upsert(map);</span><br><span class="line"></span><br><span class="line">    UpdateResponse response;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        response = client.update(request);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ElasticsearchException  e) &#123;</span><br><span class="line">        System.out.println(e.status());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.version(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Timeout to wait for primary shard to become available as a TimeValue<br>Timeout to wait for primary shard to become available as a String</p>
+</blockquote>
+<h5 id="刷新策略"><a href="#刷新策略" class="headerlink" title="刷新策略"></a>刷新策略</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL); </span><br><span class="line">request.setRefreshPolicy(<span class="string">"wait_for"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Refresh policy as a WriteRequest.RefreshPolicy instance<br>Refresh policy as a String</p>
+</blockquote>
+<h5 id="冲突时更新动作进行几次"><a href="#冲突时更新动作进行几次" class="headerlink" title="冲突时更新动作进行几次"></a>冲突时更新动作进行几次</h5><p>要更新的文档在更新过程中被另一个操作修改，则重试更新操作的次数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.retryOnConflict(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="源搜索"><a href="#源搜索" class="headerlink" title="源搜索"></a>源搜索</h5><p>默认为true<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.fetchSource(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id="局部查询"><a href="#局部查询" class="headerlink" title="局部查询"></a>局部查询</h5><p>同getapi中 <em>局部查询</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String[] includes = <span class="keyword">new</span> String[]&#123;<span class="string">"updated"</span>, <span class="string">"r*"</span>&#125;;</span><br><span class="line">String[] excludes = Strings.EMPTY_ARRAY;</span><br><span class="line">request.fetchSource(<span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes)); </span><br><span class="line"></span><br><span class="line">String[] includes = Strings.EMPTY_ARRAY;</span><br><span class="line">String[] excludes = <span class="keyword">new</span> String[]&#123;<span class="string">"updated"</span>&#125;;</span><br><span class="line">request.fetchSource(<span class="keyword">new</span> FetchSourceContext(<span class="keyword">true</span>, includes, excludes));</span><br></pre></td></tr></table></figure></p>
+<h5 id="禁用无操作检测"><a href="#禁用无操作检测" class="headerlink" title="禁用无操作检测"></a>禁用无操作检测</h5><p>无操作<br>该文档没有收到update操作的影响，也就是在该文档上没有任何操作执行</p>
+<blockquote>
+<p>the case where the document was not impacted by the update, ie no operation (noop) was executed on the document</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.detectNoop(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="脚本控制"><a href="#脚本控制" class="headerlink" title="脚本控制"></a>脚本控制</h5><p>无论文档是否存在，脚本都必须运行，即如果文档不存在，则脚本负责创建文档。</p>
+<blockquote>
+<p>Indicate that the script must run regardless of whether the document exists or not, ie the script takes care of creating the document if it does not already exist.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.scriptedUpsert(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="upsert控制"><a href="#upsert控制" class="headerlink" title="upsert控制"></a>upsert控制</h5><p>如果文档不存在，那么就根据给定的局部文档创建新文档。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.docAsUpsert(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+<h5 id=""><a href="#" class="headerlink" title="???"></a>???</h5><p>设置在继续更新操作之前必须激活的分片副本的数量。</p>
+<blockquote>
+<p>Sets the number of shard copies that must be active before proceeding with the update operation.</p>
+</blockquote>
+<p>作为ActiveShardCount提供的分片副本数：可以是ActiveShardCount.ALL，ActiveShardCount.ONE或ActiveShardCount.DEFAULT（默认值）</p>
+<blockquote>
+<p>Number of shard copies provided as a ActiveShardCount: can be ActiveShardCount.ALL, ActiveShardCount.ONE or ActiveShardCount.DEFAULT (default)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.waitForActiveShards(<span class="number">2</span>); </span><br><span class="line">request.waitForActiveShards(ActiveShardCount.ALL);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="UpdateResponse"><a href="#UpdateResponse" class="headerlink" title="UpdateResponse"></a>UpdateResponse</h3><h4 id="执行方式"><a href="#执行方式" class="headerlink" title="执行方式"></a>执行方式</h4><ul>
+<li><p>同步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateResponse updateResponse = client.update(request);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">client.updateAsync(request, <span class="keyword">new</span> ActionListener&lt;UpdateResponse&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(UpdateResponse updateResponse)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//更新成功</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//更新失败</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="响应参数"><a href="#响应参数" class="headerlink" title="响应参数"></a>响应参数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">String index = updateResponse.getIndex();</span><br><span class="line">String type = updateResponse.getType();</span><br><span class="line">String id = updateResponse.getId();</span><br><span class="line"><span class="keyword">long</span> version = updateResponse.getVersion();</span><br><span class="line"><span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.CREATED) &#123;</span><br><span class="line">    <span class="comment">// 文档创建 (upsert)</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.UPDATED) &#123;</span><br><span class="line">    <span class="comment">// 文档更新</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.DELETED) &#123;</span><br><span class="line">    <span class="comment">// 文档删除</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (updateResponse.getResult() == DocWriteResponse.Result.NOOP) &#123;</span><br><span class="line">    <span class="comment">//文档无操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果使用了 fetchSource 那么可以使用如下方法打印更新后的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GetResult result = updateResponse.getGetResult(); </span><br><span class="line"><span class="keyword">if</span> (result.isExists()) &#123;</span><br><span class="line">    String sourceAsString = result.sourceAsString(); </span><br><span class="line">    Map&lt;String, Object&gt; sourceAsMap = result.sourceAsMap(); </span><br><span class="line">    <span class="keyword">byte</span>[] sourceAsBytes = result.source(); </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//处理文档来源不存在于响应中的场景（默认情况下是这种情况）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分片失败情况<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ReplicationResponse.ShardInfo shardInfo = updateResponse.getShardInfo();</span><br><span class="line"><span class="keyword">if</span> (shardInfo.getTotal() != shardInfo.getSuccessful()) &#123;</span><br><span class="line">    <span class="comment">//成功更新的分片数量不等于分片总数的情况</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (shardInfo.getFailed() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (ReplicationResponse.ShardInfo.Failure failure : shardInfo.getFailures()) &#123;</span><br><span class="line">        String reason = failure.reason(); </span><br><span class="line">        <span class="comment">//处理潜在的失败情况</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>404找不到文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">UpdateRequest request = <span class="keyword">new</span> UpdateRequest(<span class="string">"posts"</span>, <span class="string">"type"</span>, <span class="string">"does_not_exist"</span>).doc(<span class="string">"field"</span>, <span class="string">"value"</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    UpdateResponse updateResponse = client.update(request);</span><br><span class="line">&#125; <span class="keyword">catch</span> (ElasticsearchException e) &#123;</span><br><span class="line">    <span class="keyword">if</span> (e.status() == RestStatus.NOT_FOUND) &#123;</span><br><span class="line">        <span class="comment">//404</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>文档版本冲突</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    UpdateResponse updateResponse = client.update(request);</span><br><span class="line">&#125; <span class="keyword">catch</span>(ElasticsearchException e) &#123;</span><br><span class="line">    <span class="keyword">if</span> (e.status() == RestStatus.CONFLICT) &#123;</span><br><span class="line">        <span class="comment">//版本冲突</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/05/elasticsearch/05-delete API/" rel="next" title="elasticsearch-删除文档">
+                <i class="fa fa-chevron-left"></i> elasticsearch-删除文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/07/elasticsearch/07-bulk API/" rel="prev" title="elasticsearch-批量处理">
+                elasticsearch-批量处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">i7baoZ</p>
+              <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Update-API-更新"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Update-API-&#x66F4;&#x65B0;" class="headerlink" title="Update API &#x66F4;&#x65B0;"></a>Update API &#x66F4;&#x65B0;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"></a>&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-Request-实例化"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Update-Request-&#x5B9E;&#x4F8B;&#x5316;" class="headerlink" title="Update Request &#x5B9E;&#x4F8B;&#x5316;"></a>Update Request &#x5B9E;&#x4F8B;&#x5316;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用脚本"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x811A;&#x672C;" class="headerlink" title="&#x4F7F;&#x7528;&#x811A;&#x672C;"></a>&#x4F7F;&#x7528;&#x811A;&#x672C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部更新"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#&#x5C40;&#x90E8;&#x66F4;&#x65B0;" class="headerlink" title="&#x5C40;&#x90E8;&#x66F4;&#x65B0;"></a>&#x5C40;&#x90E8;&#x66F4;&#x65B0;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Upserts"><span class="nav-number">1.2.3.</span> <span class="nav-text"><a href="#Upserts" class="headerlink" title="Upserts"></a>Upserts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可选参数"><span class="nav-number">1.2.4.</span> <span class="nav-text"><a href="#&#x53EF;&#x9009;&#x53C2;&#x6570;" class="headerlink" title="&#x53EF;&#x9009;&#x53C2;&#x6570;"></a>&#x53EF;&#x9009;&#x53C2;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#路由"><span class="nav-number">1.2.4.1.</span> <span class="nav-text"><a href="#&#x8DEF;&#x7531;" class="headerlink" title="&#x8DEF;&#x7531;"></a>&#x8DEF;&#x7531;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父级文档id"><span class="nav-number">1.2.4.2.</span> <span class="nav-text"><a href="#&#x7236;&#x7EA7;&#x6587;&#x6863;id" class="headerlink" title="&#x7236;&#x7EA7;&#x6587;&#x6863;id"></a>&#x7236;&#x7EA7;&#x6587;&#x6863;id</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本号"><span class="nav-number">1.2.4.3.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x53F7;" class="headerlink" title="&#x7248;&#x672C;&#x53F7;"></a>&#x7248;&#x672C;&#x53F7;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#超时时间"><span class="nav-number">1.2.4.4.</span> <span class="nav-text"><a href="#&#x8D85;&#x65F6;&#x65F6;&#x95F4;" class="headerlink" title="&#x8D85;&#x65F6;&#x65F6;&#x95F4;"></a>&#x8D85;&#x65F6;&#x65F6;&#x95F4;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刷新策略"><span class="nav-number">1.2.4.5.</span> <span class="nav-text"><a href="#&#x5237;&#x65B0;&#x7B56;&#x7565;" class="headerlink" title="&#x5237;&#x65B0;&#x7B56;&#x7565;"></a>&#x5237;&#x65B0;&#x7B56;&#x7565;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#冲突时更新动作进行几次"><span class="nav-number">1.2.4.6.</span> <span class="nav-text"><a href="#&#x51B2;&#x7A81;&#x65F6;&#x66F4;&#x65B0;&#x52A8;&#x4F5C;&#x8FDB;&#x884C;&#x51E0;&#x6B21;" class="headerlink" title="&#x51B2;&#x7A81;&#x65F6;&#x66F4;&#x65B0;&#x52A8;&#x4F5C;&#x8FDB;&#x884C;&#x51E0;&#x6B21;"></a>&#x51B2;&#x7A81;&#x65F6;&#x66F4;&#x65B0;&#x52A8;&#x4F5C;&#x8FDB;&#x884C;&#x51E0;&#x6B21;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源搜索"><span class="nav-number">1.2.4.7.</span> <span class="nav-text"><a href="#&#x6E90;&#x641C;&#x7D22;" class="headerlink" title="&#x6E90;&#x641C;&#x7D22;"></a>&#x6E90;&#x641C;&#x7D22;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#局部查询"><span class="nav-number">1.2.4.8.</span> <span class="nav-text"><a href="#&#x5C40;&#x90E8;&#x67E5;&#x8BE2;" class="headerlink" title="&#x5C40;&#x90E8;&#x67E5;&#x8BE2;"></a>&#x5C40;&#x90E8;&#x67E5;&#x8BE2;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#禁用无操作检测"><span class="nav-number">1.2.4.9.</span> <span class="nav-text"><a href="#&#x7981;&#x7528;&#x65E0;&#x64CD;&#x4F5C;&#x68C0;&#x6D4B;" class="headerlink" title="&#x7981;&#x7528;&#x65E0;&#x64CD;&#x4F5C;&#x68C0;&#x6D4B;"></a>&#x7981;&#x7528;&#x65E0;&#x64CD;&#x4F5C;&#x68C0;&#x6D4B;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本控制"><span class="nav-number">1.2.4.10.</span> <span class="nav-text"><a href="#&#x811A;&#x672C;&#x63A7;&#x5236;" class="headerlink" title="&#x811A;&#x672C;&#x63A7;&#x5236;"></a>&#x811A;&#x672C;&#x63A7;&#x5236;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#upsert控制"><span class="nav-number">1.2.4.11.</span> <span class="nav-text"><a href="#upsert&#x63A7;&#x5236;" class="headerlink" title="upsert&#x63A7;&#x5236;"></a>upsert&#x63A7;&#x5236;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.4.12.</span> <span class="nav-text"><a href="#" class="headerlink" title="???"></a>???</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UpdateResponse"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#UpdateResponse" class="headerlink" title="UpdateResponse"></a>UpdateResponse</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行方式"><span class="nav-number">1.3.1.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x65B9;&#x5F0F;" class="headerlink" title="&#x6267;&#x884C;&#x65B9;&#x5F0F;"></a>&#x6267;&#x884C;&#x65B9;&#x5F0F;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应参数"><span class="nav-number">1.3.2.</span> <span class="nav-text"><a href="#&#x54CD;&#x5E94;&#x53C2;&#x6570;" class="headerlink" title="&#x54CD;&#x5E94;&#x53C2;&#x6570;"></a>&#x54CD;&#x5E94;&#x53C2;&#x6570;</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">i7baoZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by"> <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info"> theme  &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
