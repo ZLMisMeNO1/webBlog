@@ -53,16 +53,8 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
@@ -79,18 +71,18 @@
 
 
 
-<meta name="description" content="Get API 获取Get Request实例化1GetRequest request = new GetRequest(indexName,type,documentId); e.g.12345678public void get() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;inf">
+<meta name="description" content="Get API 获取Get Request实例化1GetRequest request = new GetRequest(indexName,type,documentId);">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-获取文档">
 <meta property="og:url" content="http://www.i7baoz.cn/2017/12/04/elasticsearch/04-get API/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="Get API 获取Get Request实例化1GetRequest request = new GetRequest(indexName,type,documentId); e.g.12345678public void get() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;inf">
+<meta property="og:description" content="Get API 获取Get Request实例化1GetRequest request = new GetRequest(indexName,type,documentId);">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T06:33:38.172Z">
+<meta property="og:updated_time" content="2017-12-22T02:47:13.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-获取文档">
-<meta name="twitter:description" content="Get API 获取Get Request实例化1GetRequest request = new GetRequest(indexName,type,documentId); e.g.12345678public void get() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;inf">
+<meta name="twitter:description" content="Get API 获取Get Request实例化1GetRequest request = new GetRequest(indexName,type,documentId);">
 
 
 
@@ -186,6 +178,16 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -207,16 +209,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            所有
           </a>
         </li>
       
@@ -278,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -363,6 +355,7 @@
 
       
         <h2 id="Get-API-获取"><a href="#Get-API-获取" class="headerlink" title="Get API 获取"></a>Get API 获取</h2><h3 id="Get-Request实例化"><a href="#Get-Request实例化" class="headerlink" title="Get Request实例化"></a>Get Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetRequest request = <span class="keyword">new</span> GetRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>e.g.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest);</span><br><span class="line">    System.out.println(getResponse.getSourceAsString());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//打印结果</span></span><br><span class="line">    <span class="comment">//&#123;"id":"1","name":"name_1","age":1,"updateTime":1513654831475,"birth":1513654216715,"hight":0.6375151,"weight":0.4946818126143968,"isBoy":false&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="设置版本号"><a href="#设置版本号" class="headerlink" title="设置版本号"></a>设置版本号</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.version(<span class="keyword">long</span> version);</span><br></pre></td></tr></table></figure>
 <h5 id="局部查询"><a href="#局部查询" class="headerlink" title="局部查询"></a>局部查询</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRequest.fetchSourceContext(FetchSourceContext context);</span><br></pre></td></tr></table></figure>
@@ -497,6 +490,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="i7baoZ" />
+            
               <p class="site-author-name" itemprop="name">i7baoZ</p>
               <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
           </div>
@@ -508,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

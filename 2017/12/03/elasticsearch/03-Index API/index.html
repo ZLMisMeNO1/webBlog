@@ -53,16 +53,8 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
@@ -79,18 +71,18 @@
 
 
 
-<meta name="description" content="索引官方文档–Index API 生成JSON文档生成方式 1.手动生成字符串形式123456789public String jsonSource() &amp;#123;	String jsonSource = &quot;&amp;#123;&quot; +	        &quot;\&quot;country\&quot;:\&quot;China VS US\&quot;,&quot; +	        &quot;\&quot;startTime\&quot;:\&quot;&quot;+new Date()+&quot;\&quot;,&quot;">
+<meta name="description" content="索引官方文档–Index API 生成JSON文档">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-建立索引">
 <meta property="og:url" content="http://www.i7baoz.cn/2017/12/03/elasticsearch/03-Index API/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="索引官方文档–Index API 生成JSON文档生成方式 1.手动生成字符串形式123456789public String jsonSource() &amp;#123;	String jsonSource = &quot;&amp;#123;&quot; +	        &quot;\&quot;country\&quot;:\&quot;China VS US\&quot;,&quot; +	        &quot;\&quot;startTime\&quot;:\&quot;&quot;+new Date()+&quot;\&quot;,&quot;">
+<meta property="og:description" content="索引官方文档–Index API 生成JSON文档">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T06:33:28.140Z">
+<meta property="og:updated_time" content="2017-12-22T02:47:06.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-建立索引">
-<meta name="twitter:description" content="索引官方文档–Index API 生成JSON文档生成方式 1.手动生成字符串形式123456789public String jsonSource() &amp;#123;	String jsonSource = &quot;&amp;#123;&quot; +	        &quot;\&quot;country\&quot;:\&quot;China VS US\&quot;,&quot; +	        &quot;\&quot;startTime\&quot;:\&quot;&quot;+new Date()+&quot;\&quot;,&quot;">
+<meta name="twitter:description" content="索引官方文档–Index API 生成JSON文档">
 
 
 
@@ -186,6 +178,16 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -207,16 +209,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            所有
           </a>
         </li>
       
@@ -278,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -363,7 +355,8 @@
 
       
         <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p><a href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.0/java-docs-index.html" target="_blank" rel="noopener">官方文档–Index API</a></p>
-<h4 id="生成JSON文档"><a href="#生成JSON文档" class="headerlink" title="生成JSON文档"></a>生成JSON文档</h4><p>生成方式</p>
+<h4 id="生成JSON文档"><a href="#生成JSON文档" class="headerlink" title="生成JSON文档"></a>生成JSON文档</h4><a id="more"></a>
+<p>生成方式</p>
 <p>1.手动生成字符串形式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">jsonSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	String jsonSource = <span class="string">"&#123;"</span> +</span><br><span class="line">	        <span class="string">"\"country\":\"China VS US\","</span> +</span><br><span class="line">	        <span class="string">"\"startTime\":\""</span>+<span class="keyword">new</span> Date()+<span class="string">"\","</span> +</span><br><span class="line">	        <span class="string">"\"message\":\"China is ok !\""</span> +</span><br><span class="line">	        <span class="string">"&#125;"</span>;</span><br><span class="line">	System.out.println(jsonSource);</span><br><span class="line">	<span class="keyword">return</span> jsonSource;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>2.使用自己的bean<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">        get/set ...</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">byte</span>[] byteSource() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">	TestBean testBean = <span class="keyword">new</span> TestBean();</span><br><span class="line">	testBean.setAge(<span class="number">11</span>);</span><br><span class="line">	testBean.setId(<span class="string">"abcdefg"</span>);</span><br><span class="line">	testBean.setName(<span class="string">"i7baoz"</span>);</span><br><span class="line">	ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">	<span class="keyword">return</span> mapper.writeValueAsBytes(testBean);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
@@ -499,6 +492,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="i7baoZ" />
+            
               <p class="site-author-name" itemprop="name">i7baoZ</p>
               <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
           </div>
@@ -510,7 +507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

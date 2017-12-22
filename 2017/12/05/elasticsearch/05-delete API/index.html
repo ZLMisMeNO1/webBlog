@@ -53,16 +53,8 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
@@ -79,18 +71,18 @@
 
 
 
-<meta name="description" content="Delete API 删除Delete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId); 可选参数路由1request.routing(&quot;routing&quot;); 父级文档id1request.parent(&quot;parent&quot;); 超时时间12request.timeout(TimeValue">
+<meta name="description" content="Delete API 删除Delete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId);">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-删除文档">
 <meta property="og:url" content="http://www.i7baoz.cn/2017/12/05/elasticsearch/05-delete API/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="Delete API 删除Delete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId); 可选参数路由1request.routing(&quot;routing&quot;); 父级文档id1request.parent(&quot;parent&quot;); 超时时间12request.timeout(TimeValue">
+<meta property="og:description" content="Delete API 删除Delete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId);">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T06:33:43.066Z">
+<meta property="og:updated_time" content="2017-12-22T02:38:48.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-删除文档">
-<meta name="twitter:description" content="Delete API 删除Delete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId); 可选参数路由1request.routing(&quot;routing&quot;); 父级文档id1request.parent(&quot;parent&quot;); 超时时间12request.timeout(TimeValue">
+<meta name="twitter:description" content="Delete API 删除Delete Request实例化1DeleteRequest request = new DeleteRequest(indexName,type,documentId);">
 
 
 
@@ -186,6 +178,16 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -207,16 +209,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            所有
           </a>
         </li>
       
@@ -278,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -363,6 +355,7 @@
 
       
         <h2 id="Delete-API-删除"><a href="#Delete-API-删除" class="headerlink" title="Delete API 删除"></a>Delete API 删除</h2><h3 id="Delete-Request实例化"><a href="#Delete-Request实例化" class="headerlink" title="Delete Request实例化"></a>Delete Request实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeleteRequest request = <span class="keyword">new</span> DeleteRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><h5 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.routing(<span class="string">"routing"</span>);</span><br></pre></td></tr></table></figure>
 <h5 id="父级文档id"><a href="#父级文档id" class="headerlink" title="父级文档id"></a>父级文档id</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.parent(<span class="string">"parent"</span>);</span><br></pre></td></tr></table></figure>
 <h5 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
@@ -493,6 +486,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="i7baoZ" />
+            
               <p class="site-author-name" itemprop="name">i7baoZ</p>
               <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
           </div>
@@ -504,7 +501,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

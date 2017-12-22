@@ -53,16 +53,8 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
@@ -79,18 +71,18 @@
 
 
 
-<meta name="description" content="Update API 更新准备工作①.先查询一个存在的文档1234567891011@Testpublic void query() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,&quot;1&quot;);    GetResponse getResponse = client.get(get">
+<meta name="description" content="Update API 更新准备工作">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticsearch-修改文档">
 <meta property="og:url" content="http://www.i7baoz.cn/2017/12/06/elasticsearch/06-update API/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="Update API 更新准备工作①.先查询一个存在的文档1234567891011@Testpublic void query() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,&quot;1&quot;);    GetResponse getResponse = client.get(get">
+<meta property="og:description" content="Update API 更新准备工作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T06:33:48.688Z">
+<meta property="og:updated_time" content="2017-12-22T02:47:24.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-修改文档">
-<meta name="twitter:description" content="Update API 更新准备工作①.先查询一个存在的文档1234567891011@Testpublic void query() throws IOException &amp;#123;    GetRequest getRequest = new GetRequest(&quot;person&quot;,&quot;info&quot;,&quot;1&quot;);    GetResponse getResponse = client.get(get">
+<meta name="twitter:description" content="Update API 更新准备工作">
 
 
 
@@ -186,6 +178,16 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -207,16 +209,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            所有
           </a>
         </li>
       
@@ -278,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -362,7 +354,8 @@
       
 
       
-        <h2 id="Update-API-更新"><a href="#Update-API-更新" class="headerlink" title="Update API 更新"></a>Update API 更新</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>①.先查询一个存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="Update-API-更新"><a href="#Update-API-更新" class="headerlink" title="Update API 更新"></a>Update API 更新</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><a id="more"></a>
+<p>①.先查询一个存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"1"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>②.查询一个不存在的文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">"person"</span>,<span class="string">"info"</span>,<span class="string">"17"</span>);</span><br><span class="line">    GetResponse getResponse = client.get(getRequest) ;</span><br><span class="line">    <span class="keyword">if</span>( getResponse.isExists() ) &#123;</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">" not found "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="Update-Request-实例化"><a href="#Update-Request-实例化" class="headerlink" title="Update Request 实例化"></a>Update Request 实例化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UpdateRequest update = <span class="keyword">new</span> UpdateRequest(indexName,type,documentId);</span><br></pre></td></tr></table></figure>
 <p>更新API允许通过使用脚本或传递部分文档来更新现有文档。</p>
@@ -537,6 +530,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="i7baoZ" />
+            
               <p class="site-author-name" itemprop="name">i7baoZ</p>
               <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
           </div>
@@ -548,7 +545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

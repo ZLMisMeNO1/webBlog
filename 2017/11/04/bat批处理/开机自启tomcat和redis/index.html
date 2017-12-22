@@ -53,16 +53,8 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
@@ -87,7 +79,7 @@
 <meta property="og:site_name" content="积累">
 <meta property="og:description" content="配置文件 conf.ini123456789[reids]redis-port=6379redis-bin=E:\Redis ;redis所在文件夹[tomcat-dc]dc-port=8888dc-bin=E:\apache-tomcat-dc ;tomcat-dc所在文件夹[tomcat-app]app-port=8080app-bin=E:\apache-tomcat-app ;tomcat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T06:26:04.944Z">
+<meta property="og:updated_time" content="2017-12-22T02:46:41.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开机自启动tomcat和redis">
 <meta name="twitter:description" content="配置文件 conf.ini123456789[reids]redis-port=6379redis-bin=E:\Redis ;redis所在文件夹[tomcat-dc]dc-port=8888dc-bin=E:\apache-tomcat-dc ;tomcat-dc所在文件夹[tomcat-app]app-port=8080app-bin=E:\apache-tomcat-app ;tomcat">
@@ -186,6 +178,16 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -207,16 +209,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            所有
           </a>
         </li>
       
@@ -278,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -363,6 +355,7 @@
 
       
         <p>配置文件 conf.ini<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[reids]</span></span><br><span class="line"><span class="attr">redis-port</span>=<span class="number">6379</span></span><br><span class="line"><span class="attr">redis-bin</span>=E:\Redis ;redis所在文件夹</span><br><span class="line"><span class="section">[tomcat-dc]</span></span><br><span class="line"><span class="attr">dc-port</span>=<span class="number">8888</span></span><br><span class="line"><span class="attr">dc-bin</span>=E:\apache-tomcat-dc ;tomcat-dc所在文件夹</span><br><span class="line"><span class="section">[tomcat-app]</span></span><br><span class="line"><span class="attr">app-port</span>=<span class="number">8080</span></span><br><span class="line"><span class="attr">app-bin</span>=E:\apache-tomcat-app ;tomcat-app所在文件夹</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>start.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">rem 获取配置文件 使用 %key% 获取值</span></span><br><span class="line">@<span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"><span class="keyword">for</span> /f "usebackq delims=" <span class="variable">%%a</span> <span class="keyword">in</span> (conf.ini) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">set</span> content=<span class="variable">%%a</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> "<span class="variable">!content:~0,1!</span>" == "[" (</span><br><span class="line">        <span class="keyword">for</span> /f "delims=; tokens=<span class="number">1</span>" <span class="variable">%%b</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">            <span class="built_in">set</span> content=<span class="variable">%%b</span></span><br><span class="line">            <span class="keyword">for</span> /f "delims== tokens=<span class="number">1</span>-<span class="number">2</span>" <span class="variable">%%i</span> <span class="keyword">in</span> ("<span class="variable">!content!</span>") <span class="keyword">do</span> (</span><br><span class="line">                <span class="built_in">set</span> key=<span class="variable">%%i</span></span><br><span class="line">                    <span class="built_in">set</span> key=!key: =!</span><br><span class="line">                <span class="built_in">set</span> value=<span class="variable">%%j</span></span><br><span class="line">                    <span class="built_in">set</span> value=!value: =!</span><br><span class="line">                <span class="built_in">set</span> <span class="variable">!key!</span>=<span class="variable">!value!</span></span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"><span class="comment">rem 使用 netstat -ano| findstr 端口号  查看当前端口是否占用</span></span><br><span class="line"><span class="comment">rem 没有占用的话启动相应项目</span></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%redis-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "redis had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> redis..."</span><br><span class="line"><span class="comment">		REM @start "redis-server" cmd /k "%redis-bin%/redis-server.exe %redis-bin%/redis.windows.conf"</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%dc-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-dc had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-dc"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%dc-bin%</span>/bin"</span><br><span class="line">		<span class="built_in">start</span> "tomcat-dc" <span class="built_in">cmd</span> /c  "<span class="variable">%dc-bin%</span>/bin/startup.bat"</span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">@netstat -an  | <span class="built_in">findstr</span> "<span class="variable">%app-port%</span>"</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%ERRORLEVEL%</span> == <span class="number">0</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "tomcat-app had started"</span><br><span class="line">	) <span class="keyword">else</span> (</span><br><span class="line">		@<span class="built_in">echo</span> "<span class="built_in">start</span> tomcat-app"</span><br><span class="line">		<span class="built_in">cd</span> /d "<span class="variable">%app-bin%</span>/bin"</span><br><span class="line">		@<span class="built_in">start</span> "tomcat-app" <span class="built_in">cmd</span> /c "<span class="variable">%app-bin%</span>\bin\startup.bat"</span><br></pre></td></tr></table></figure></p>
 <p>由start.bat生成runSystem.bat文件的脚本 generate.bat<br><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> name=runSystem.bat</span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">echo</span> off &gt; <span class="variable">%name%</span></span><br><span class="line"><span class="comment">rem %cd% 当前目录 </span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">cd</span> /d <span class="variable">%cd%</span> &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">start</span>.bat &gt;&gt; <span class="variable">%name%</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">pause</span> &gt;&gt; <span class="variable">%name%</span></span><br></pre></td></tr></table></figure></p>
 <ul>
@@ -468,6 +461,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="i7baoZ" />
+            
               <p class="site-author-name" itemprop="name">i7baoZ</p>
               <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
           </div>
@@ -479,7 +476,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

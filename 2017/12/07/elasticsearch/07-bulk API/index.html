@@ -53,16 +53,8 @@
 <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
 
 
@@ -87,7 +79,7 @@
 <meta property="og:site_name" content="积累">
 <meta property="og:description" content="BULK API 批量处理 批量API仅支持以JSON或SMILE编码的文档。 以任何其他格式提供文档将导致错误。   The Bulk API supports only documents encoded in JSON or SMILE. Providing documents in any other format will result in an error.  BulkRequest">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T07:42:34.286Z">
+<meta property="og:updated_time" content="2017-12-22T02:47:29.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch-批量处理">
 <meta name="twitter:description" content="BULK API 批量处理 批量API仅支持以JSON或SMILE编码的文档。 以任何其他格式提供文档将导致错误。   The Bulk API supports only documents encoded in JSON or SMILE. Providing documents in any other format will result in an error.  BulkRequest">
@@ -186,6 +178,16 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
             归档
           </a>
         </li>
@@ -207,16 +209,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            所有
           </a>
         </li>
       
@@ -278,7 +270,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -366,8 +358,7 @@
 <blockquote>
 <p>The Bulk API supports only documents encoded in JSON or SMILE. Providing documents in any other format will result in an error.</p>
 </blockquote>
-<h4 id="BulkRequest"><a href="#BulkRequest" class="headerlink" title="BulkRequest"></a>BulkRequest</h4><p>BulkRequest可以用于使用单一请求多个操作，<br>或多个更新或删除操作。</p>
-<p>添加索引<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BulkRequest request = <span class="keyword">new</span> BulkRequest(); </span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"1"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"foo"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"2"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"bar"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"3"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"baz"</span>));</span><br></pre></td></tr></table></figure></p>
+<h4 id="BulkRequest"><a href="#BulkRequest" class="headerlink" title="BulkRequest"></a>BulkRequest</h4><p>BulkRequest可以用于使用单一请求多个操作，<br>或多个更新或删除操作。<br><a id="more"></a><br>添加索引<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BulkRequest request = <span class="keyword">new</span> BulkRequest(); </span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"1"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"foo"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"2"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"bar"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"3"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"baz"</span>));</span><br></pre></td></tr></table></figure></p>
 <p>多个操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BulkRequest request = <span class="keyword">new</span> BulkRequest();</span><br><span class="line">request.add(<span class="keyword">new</span> DeleteRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"3"</span>)); </span><br><span class="line">request.add(<span class="keyword">new</span> UpdateRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"2"</span>) </span><br><span class="line">        .doc(XContentType.JSON,<span class="string">"other"</span>, <span class="string">"test"</span>));</span><br><span class="line">request.add(<span class="keyword">new</span> IndexRequest(<span class="string">"posts"</span>, <span class="string">"doc"</span>, <span class="string">"4"</span>)  </span><br><span class="line">        .source(XContentType.JSON,<span class="string">"field"</span>, <span class="string">"baz"</span>));</span><br></pre></td></tr></table></figure></p>
 <h5 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h5><h6 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.timeout(TimeValue.timeValueMinutes(<span class="number">2</span>)); </span><br><span class="line">request.timeout(<span class="string">"2m"</span>);</span><br></pre></td></tr></table></figure>
 <h6 id="刷新策略"><a href="#刷新策略" class="headerlink" title="刷新策略"></a>刷新策略</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL); </span><br><span class="line">request.setRefreshPolicy(<span class="string">"wait_for"</span>);</span><br></pre></td></tr></table></figure>
@@ -446,6 +437,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/12/08/elasticsearch/08-search API/" rel="prev" title="elasticsearch-查询接口">
+                elasticsearch-查询接口 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -510,6 +505,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="i7baoZ" />
+            
               <p class="site-author-name" itemprop="name">i7baoZ</p>
               <p class="site-description motion-element" itemprop="description">宁欺白须翁，莫欺少年穷。</p>
           </div>
@@ -521,7 +520,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
