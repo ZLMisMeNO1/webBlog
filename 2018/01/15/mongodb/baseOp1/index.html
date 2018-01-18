@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="redis和memcached相比的独特之处 redis可用来做存储，memchched用来做缓存。 memcached只有字符串类型，redis可以存储字符串、链表、哈希结构、集合、有序集合   安装步骤 cd 目标目录 wget 压缩包地址 tar zxvf 文件名 make （32位：make 32bit） 安装到指定文件夹：make PREFIX=/usr/local/redis inst">
+<meta name="description" content="创建数据库1use [databaseName] 查看所有数据库1show dbs">
 <meta name="keywords" content="nosql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis-安装">
-<meta property="og:url" content="http://www.i7baoz.cn/2018/01/01/redis/readme/index.html">
+<meta property="og:title" content="mongodb-基本操作（一）">
+<meta property="og:url" content="http://www.i7baoz.cn/2018/01/15/mongodb/baseOp1/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="redis和memcached相比的独特之处 redis可用来做存储，memchched用来做缓存。 memcached只有字符串类型，redis可以存储字符串、链表、哈希结构、集合、有序集合   安装步骤 cd 目标目录 wget 压缩包地址 tar zxvf 文件名 make （32位：make 32bit） 安装到指定文件夹：make PREFIX=/usr/local/redis inst">
+<meta property="og:description" content="创建数据库1use [databaseName] 查看所有数据库1show dbs">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-18T07:15:39.259Z">
+<meta property="og:updated_time" content="2018-01-18T07:14:20.049Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis-安装">
-<meta name="twitter:description" content="redis和memcached相比的独特之处 redis可用来做存储，memchched用来做缓存。 memcached只有字符串类型，redis可以存储字符串、链表、哈希结构、集合、有序集合   安装步骤 cd 目标目录 wget 压缩包地址 tar zxvf 文件名 make （32位：make 32bit） 安装到指定文件夹：make PREFIX=/usr/local/redis inst">
+<meta name="twitter:title" content="mongodb-基本操作（一）">
+<meta name="twitter:description" content="创建数据库1use [databaseName] 查看所有数据库1show dbs">
 
 
 
@@ -112,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="http://www.i7baoz.cn/2018/01/01/redis/readme/21"/>
+  <link rel="canonical" href="http://www.i7baoz.cn/2018/01/15/mongodb/baseOp1/21"/>
 
 
 
 
 
-  <title>redis-安装 | 积累</title>
+  <title>mongodb-基本操作（一） | 积累</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/redis/readme/">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/15/mongodb/baseOp1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">redis-安装</h1>
+          <h1 class="post-title" itemprop="name headline">mongodb-基本操作（一）</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T00:00:00+08:00">
-                2018-01-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-15T00:00:00+08:00">
+                2018-01-15
               </time>
             
 
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
                   </a>
                 </span>
 
@@ -354,35 +354,32 @@
       
 
       
-        <h1 id="redis和memcached相比的独特之处"><a href="#redis和memcached相比的独特之处" class="headerlink" title="redis和memcached相比的独特之处"></a>redis和memcached相比的独特之处</h1><ol>
-<li>redis可用来做存储，memchched用来做缓存。</li>
-<li>memcached只有字符串类型，redis可以存储字符串、链表、哈希结构、集合、有序集合</li>
+        <h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use [databaseName]</span><br></pre></td></tr></table></figure>
+<h3 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show dbs</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="向指定集合插入一个文档"><a href="#向指定集合插入一个文档" class="headerlink" title="向指定集合插入一个文档"></a>向指定集合插入一个文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">db.[collectionName].insert([document])</span><br><span class="line">db.[collectionName].save([document])</span><br><span class="line"></span><br><span class="line">save 和 insert的不同：</span><br><span class="line">    当_id相同时，insert会报出key相同的错误，save会将原数据更新</span><br></pre></td></tr></table></figure>
+<h3 id="查看所有集合"><a href="#查看所有集合" class="headerlink" title="查看所有集合"></a>查看所有集合</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show collections</span><br></pre></td></tr></table></figure>
+<h3 id="删除几个中的文档"><a href="#删除几个中的文档" class="headerlink" title="删除几个中的文档"></a>删除几个中的文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.[collectionName].remove(query);</span><br></pre></td></tr></table></figure>
+<h3 id="查看集合中的文档"><a href="#查看集合中的文档" class="headerlink" title="查看集合中的文档"></a>查看集合中的文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.[collectionName].find([condition])</span><br></pre></td></tr></table></figure>
+<h3 id="查看一个集合中的一个文档"><a href="#查看一个集合中的一个文档" class="headerlink" title="查看一个集合中的一个文档"></a>查看一个集合中的一个文档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.[collectionName].findOne([condition])</span><br></pre></td></tr></table></figure>
+<h3 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.[collectionName].drop()</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.dropDatabase()</span><br></pre></td></tr></table></figure>
+<h3 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.help()</span><br><span class="line">db.[collectionName].help()</span><br></pre></td></tr></table></figure>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ol>
+<li>创建数据库【blog】<br>use blog</li>
+<li>加入文档<br> db.blog.insert({name:’i7baoz’,age:25,gendar:’man’,msg:’hello World’})<br> db.blog.save({name:’gugu’,age:23,gendar:’women’,msg:’beautiful girl’})</li>
+<li>查看所有文档<br> db.blog.find()<br> -<br> { “_id” : ObjectId(“5a60472219b87d79059ce16f”), “name” : “i7baoz”, “age” : 25, “gendar” : “man”, “msg” : “hello World” }<br> { “_id” : ObjectId(“5a60475e19b87d79059ce170”), “name” : “gugu”, “age” : 23, “gendar” : “women”, “msg” : “beautiful girl” }<br> -</li>
+<li>查看一个文档<br> db.blog.findOne();<br> -<br> {<pre><code>&quot;_id&quot; : ObjectId(&quot;5a60472219b87d79059ce16f&quot;),
+&quot;name&quot; : &quot;i7baoz&quot;,
+&quot;age&quot; : 25,
+&quot;gendar&quot; : &quot;man&quot;,
+&quot;msg&quot; : &quot;hello World&quot;
+</code></pre> }<br> -</li>
+<li>删除name=i7baoz的文档<br> db.blog.remove({name:’i7baoz’})</li>
+<li>删除数据库<br> db.dropDatabase();</li>
+<li>查看所有数据库<br> show dbs</li>
 </ol>
-<hr>
-<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><ol>
-<li>cd 目标目录</li>
-<li>wget 压缩包地址</li>
-<li>tar zxvf 文件名</li>
-<li>make （32位：make 32bit）</li>
-<li>安装到指定文件夹：make PREFIX=/usr/local/redis install</li>
-<li>复制一份配置文件： cp redis.conf /usr/local/redis</li>
-<li>启动redis：bin/redis-server redis.conf</li>
-<li>开启客户端：bin/redis-cli</li>
-<li>redis后台运行：在redis.conf文件中设置<br> daemonize:yes</li>
-<li>查看redis是否运行：ps aux|grep redis<a id="more"></a>
-<blockquote>
-<p>redis默认开启了16个数据库，可以在conf文件中database:16看到，<br>切换数据库：在客户端中，select index;默认使用0数据库。</p>
-</blockquote>
-</li>
-</ol>
-<hr>
-<h1 id="redis工具"><a href="#redis工具" class="headerlink" title="redis工具"></a>redis工具</h1><ol>
-<li>redis-bechmark:性能测试工具</li>
-<li>redis-check-aof:检查aof的工具</li>
-<li>redis-check-dump:检查rdb的工具</li>
-</ol>
-<hr>
-<!--end-->
+
       
     </div>
     
@@ -412,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/01/shiro/readme/" rel="next" title="shiro-文档">
-                <i class="fa fa-chevron-left"></i> shiro-文档
+              <a href="/2018/01/02/redis/通用key操作/" rel="next" title="redis-通用key操作">
+                <i class="fa fa-chevron-left"></i> redis-通用key操作
               </a>
             
           </div>
@@ -422,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/01/mongodb/mongo-001/" rel="prev" title="mongodb-常用配置项、与关系型数据库的对比、命名规则">
-                mongodb-常用配置项、与关系型数据库的对比、命名规则 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/18/mongodb/baseOp2/" rel="prev" title="mongodb-文档更新">
+                mongodb-文档更新 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -562,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis和memcached相比的独特之处"><span class="nav-number">1.</span> <span class="nav-text"><a href="#redis&#x548C;memcached&#x76F8;&#x6BD4;&#x7684;&#x72EC;&#x7279;&#x4E4B;&#x5904;" class="headerlink" title="redis&#x548C;memcached&#x76F8;&#x6BD4;&#x7684;&#x72EC;&#x7279;&#x4E4B;&#x5904;"></a>redis&#x548C;memcached&#x76F8;&#x6BD4;&#x7684;&#x72EC;&#x7279;&#x4E4B;&#x5904;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装步骤"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;&#x6B65;&#x9AA4;" class="headerlink" title="&#x5B89;&#x88C5;&#x6B65;&#x9AA4;"></a>&#x5B89;&#x88C5;&#x6B65;&#x9AA4;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis工具"><span class="nav-number">3.</span> <span class="nav-text"><a href="#redis&#x5DE5;&#x5177;" class="headerlink" title="redis&#x5DE5;&#x5177;"></a>redis&#x5DE5;&#x5177;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;"></a>&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有数据库"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x67E5;&#x770B;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;"></a>&#x67E5;&#x770B;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向指定集合插入一个文档"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5411;&#x6307;&#x5B9A;&#x96C6;&#x5408;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x6587;&#x6863;" class="headerlink" title="&#x5411;&#x6307;&#x5B9A;&#x96C6;&#x5408;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x6587;&#x6863;"></a>&#x5411;&#x6307;&#x5B9A;&#x96C6;&#x5408;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x6587;&#x6863;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有集合"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x6240;&#x6709;&#x96C6;&#x5408;" class="headerlink" title="&#x67E5;&#x770B;&#x6240;&#x6709;&#x96C6;&#x5408;"></a>&#x67E5;&#x770B;&#x6240;&#x6709;&#x96C6;&#x5408;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除几个中的文档"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x51E0;&#x4E2A;&#x4E2D;&#x7684;&#x6587;&#x6863;" class="headerlink" title="&#x5220;&#x9664;&#x51E0;&#x4E2A;&#x4E2D;&#x7684;&#x6587;&#x6863;"></a>&#x5220;&#x9664;&#x51E0;&#x4E2A;&#x4E2D;&#x7684;&#x6587;&#x6863;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看集合中的文档"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x6587;&#x6863;" class="headerlink" title="&#x67E5;&#x770B;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x6587;&#x6863;"></a>&#x67E5;&#x770B;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x6587;&#x6863;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看一个集合中的一个文档"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x6587;&#x6863;" class="headerlink" title="&#x67E5;&#x770B;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x6587;&#x6863;"></a>&#x67E5;&#x770B;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x6587;&#x6863;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除集合"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x96C6;&#x5408;" class="headerlink" title="&#x5220;&#x9664;&#x96C6;&#x5408;"></a>&#x5220;&#x9664;&#x96C6;&#x5408;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据库"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;"></a>&#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助"><span class="nav-number">10.</span> <span class="nav-text"><a href="#&#x5E2E;&#x52A9;" class="headerlink" title="&#x5E2E;&#x52A9;"></a>&#x5E2E;&#x52A9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习"><span class="nav-number">11.</span> <span class="nav-text"><a href="#&#x7EC3;&#x4E60;" class="headerlink" title="&#x7EC3;&#x4E60;"></a>&#x7EC3;&#x4E60;</span></a></li></ol></div>
             
 
           </div>
