@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/redis/readme/">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/mongodb/BSON/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
@@ -283,7 +283,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/01/redis/readme/" itemprop="url">redis-安装</a></h1>
+                <a class="post-title-link" href="/2018/01/01/mongodb/BSON/" itemprop="url">mongodb-bson简介</a></h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
                   </a>
                 </span>
 
@@ -356,25 +356,14 @@
 
       
         
-          <h1 id="redis和memcached相比的独特之处"><a href="#redis和memcached相比的独特之处" class="headerlink" title="redis和memcached相比的独特之处"></a>redis和memcached相比的独特之处</h1><ol>
-<li>redis可用来做存储，memchched用来做缓存。</li>
-<li>memcached只有字符串类型，redis可以存储字符串、链表、哈希结构、集合、有序集合</li>
-</ol>
+          <h1 id="BSON简介"><a href="#BSON简介" class="headerlink" title="BSON简介"></a>BSON简介</h1><p>BSON基于JSON格式，选择JSON进行改装的原因主要是JSON的通用性以及JSON的schemaless的特性。</p>
 <hr>
-<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><ol>
-<li>cd 目标目录</li>
-<li>wget 压缩包地址</li>
-<li>tar zxvf 文件名</li>
-<li>make （32位：make 32bit）</li>
-<li>安装到指定文件夹：make PREFIX=/usr/local/redis install</li>
-<li>复制一份配置文件： cp redis.conf /usr/local/redis</li>
-<li>启动redis：bin/redis-server redis.conf</li>
-<li>开启客户端：bin/redis-cli</li>
-<li>redis后台运行：在redis.conf文件中设置<br> daemonize:yes</li>
-<li>查看redis是否运行：ps aux|grep redis
+<p>BSON主要会实现以下三个目标：</p>
+<ol>
+<li><p>更快的遍历速度：json结构太大会造成数据遍历特别慢。在json中，要跳过一个文档进行数据读取，需要对此文档进行扫描才行，需要进行麻烦的数据结构匹配。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/01/redis/readme/#more" rel="contents">
+            <a class="btn" href="/2018/01/01/mongodb/BSON/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -425,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/shiro/readme/">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/shiro/权限注解添加/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
@@ -444,7 +433,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/01/shiro/readme/" itemprop="url">shiro-文档</a></h1>
+                <a class="post-title-link" href="/2018/01/01/shiro/权限注解添加/" itemprop="url">shiro-权限注解添加</a></h1>
         
 
         <div class="post-meta">
@@ -517,23 +506,14 @@
 
       
         
-          
-            <p>最近在研究shiro框架。</p>
-<p>shiro框架主要分为</p>
-<ul>
-<li>用户</li>
-<li>角色</li>
-<li>权限</li>
-</ul>
-<blockquote>
-<p>角色拥有权限，用户拥有角色—&gt; 用户拥有权限</p>
-</blockquote>
-<hr>
-<p>spring + springMVC + hibernate + redis + sql server</p>
-<p>关于sql server 可以根据实际情况配置一下hibernate.cfg.xml更改数据库</p>
-<p>详细代码<a href="https://github.com/ZLMisMeNO1/shiroWeb" target="_blank" rel="noopener">shiroWeb</a></p>
-
-          
+          <h1 id="权限注解添加"><a href="#权限注解添加" class="headerlink" title="权限注解添加"></a>权限注解添加</h1><p>在思考何为权限的问题上，我走过了很多的弯路，使用哪种方式来定义”权限”呢？<br>这个时候我看到了控制台中<br>可以打印出<strong>所有的</strong>@Controller和@RequestMapping<strong>包含的url</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/01/shiro/权限注解添加/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -726,7 +706,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/mongodb/BSON/">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/shiro/readme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="i7baoZ">
@@ -745,7 +725,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/01/mongodb/BSON/" itemprop="url">mongodb-bson简介</a></h1>
+                <a class="post-title-link" href="/2018/01/01/shiro/readme/" itemprop="url">shiro-文档</a></h1>
         
 
         <div class="post-meta">
@@ -780,8 +760,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
+                  <a href="/categories/shiro/" itemprop="url" rel="index">
+                    <span itemprop="name">shiro</span>
                   </a>
                 </span>
 
@@ -818,18 +798,23 @@
 
       
         
-          <h1 id="BSON简介"><a href="#BSON简介" class="headerlink" title="BSON简介"></a>BSON简介</h1><p>BSON基于JSON格式，选择JSON进行改装的原因主要是JSON的通用性以及JSON的schemaless的特性。</p>
+          
+            <p>最近在研究shiro框架。</p>
+<p>shiro框架主要分为</p>
+<ul>
+<li>用户</li>
+<li>角色</li>
+<li>权限</li>
+</ul>
+<blockquote>
+<p>角色拥有权限，用户拥有角色—&gt; 用户拥有权限</p>
+</blockquote>
 <hr>
-<p>BSON主要会实现以下三个目标：</p>
-<ol>
-<li><p>更快的遍历速度：json结构太大会造成数据遍历特别慢。在json中，要跳过一个文档进行数据读取，需要对此文档进行扫描才行，需要进行麻烦的数据结构匹配。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/01/mongodb/BSON/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<p>spring + springMVC + hibernate + redis + sql server</p>
+<p>关于sql server 可以根据实际情况配置一下hibernate.cfg.xml更改数据库</p>
+<p>详细代码<a href="https://github.com/ZLMisMeNO1/shiroWeb" target="_blank" rel="noopener">shiroWeb</a></p>
+
+          
         
       
     </div>
@@ -1061,7 +1046,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

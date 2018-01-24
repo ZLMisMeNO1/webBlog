@@ -264,6 +264,211 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/24/mongodb/query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="i7baoZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="积累">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/24/mongodb/query/" itemprop="url">mongodb-文档查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T00:00:00+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. use test</span><br><span class="line">2. db.user.insert(&#123;name:&apos;zhang&apos;,age:25,games:[&apos;lol&apos;,&apos;coc&apos;,&apos;cf&apos;,&apos;pubg&apos;],books:[&#123;type:&apos;js&apos;,name:&apos;jQuery&apos;&#125;,&#123;type:&apos;db&apos;,name:&apos;oracle&apos;&#125;,&#123;type:&apos;db&apos;,name:&apos;mysql&apos;&#125;]&#125;)</span><br><span class="line">3. db.user.insert(&#123;name:&apos;gu&apos;,age:22,games:[&apos;phone&apos;,&apos;lol&apos;],books:[&#123;type:&apos;js&apos;,name:&apos;jQuery&apos;&#125;,&#123;type:&apos;server&apos;,name:&apos;java&apos;&#125;,&#123;type:&apos;db&apos;,name:&apos;mysql&apos;&#125;]&#125;)</span><br><span class="line">4. db.user.insert(&#123;name:&apos;bao&apos;,age:12,games:[&apos;coc&apos;,&apos;lol&apos;],books:[&#123;type:&apos;db&apos;,name:&apos;oracle&apos;&#125;,&#123;type:&apos;server&apos;,name:&apos;java&apos;&#125;,&#123;type:&apos;db&apos;,name:&apos;mysql&apos;&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>db.collectionName.find(条件,{显示的键})<br>显示键 通过 key:0/1来确定，1代表该值显示，0代表该值不显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查询全部</span><br><span class="line">db.user.find()</span><br><span class="line"></span><br><span class="line">查询全部，但只显示name和games</span><br><span class="line">db.user.find(&#123;&#125;,&#123;name:1,games:1,_id:0&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="比较操作符"><a href="#比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h3><table>
+<thead>
+<tr>
+<th>中文含义</th>
+<th>操作符</th>
+<th>英文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小于&lt;</td>
+<td>$lt</td>
+<td>less than</td>
+</tr>
+<tr>
+<td>小于等于&lt;=</td>
+<td>$lte</td>
+<td>less  than equal</td>
+</tr>
+<tr>
+<td>大于&gt;</td>
+<td>$gt</td>
+<td>greater than </td>
+</tr>
+<tr>
+<td>大于等于 &gt;=</td>
+<td>$gte</td>
+<td>greater than equal</td>
+</tr>
+<tr>
+<td>不等于!=</td>
+<td>$ne</td>
+<td>not equal</td>
+</tr>
+<tr>
+<td>范围内in</td>
+<td>$in</td>
+<td>in</td>
+</tr>
+<tr>
+<td>不在范围内</td>
+<td>$nin</td>
+<td>not in </td>
+</tr>
+<tr>
+<td>或or</td>
+<td>$or</td>
+<td>or</td>
+</tr>
+<tr>
+<td>取反</td>
+<td>$not</td>
+<td>not</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">查询年龄大于24的人的name</span><br><span class="line">db.user.find(&#123;age:&#123;$gt:24&#125;&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询名称不是张的name</span><br><span class="line">db.user.find(&#123;name:&#123;$nin:[&apos;zhang&apos;]&#125;&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询名称是zhang或者bao的name</span><br><span class="line">db.user.find(&#123;$or:[&#123;name:&apos;zhang&apos;&#125;,&#123;name:&apos;bao&apos;&#125;]&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询名称中含有a字符的人的name</span><br><span class="line">db.user.find(&#123;name:/a/&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询名称中不含有a字符的人的name</span><br><span class="line">db.user.find(&#123;name:&#123;$not:/a/&#125;&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询同时喜欢coc和lol的人的name</span><br><span class="line">db.user.find(&#123;games:&#123;$all:[&apos;coc&apos;,&apos;lol&apos;]&#125;&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询喜欢的游戏个数是4的人的name</span><br><span class="line">db.user.find(&#123;games:&#123;$size:4&#125;&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询读了oracle书籍的人的name</span><br><span class="line">db.user.find(&#123;&apos;books.name&apos;:&apos;oracle&apos;&#125;,&#123;name:1&#125;)</span><br><span class="line"></span><br><span class="line">查询读了oracle和mysql书籍的人的name</span><br><span class="line">db.user.find(&#123;&apos;books.name&apos;:&#123;$all:[&apos;oracle&apos;,&apos;mysql&apos;]&#125;&#125;,&#123;name:1&#125;)</span><br><span class="line">/* 此处应该有更严谨的方式 ，以后补充 */</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>$size不能与比较操作符一起使用</strong></p>
+</blockquote>
+<p>### </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/18/mongodb/baseOp2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -848,155 +1053,6 @@ keys * : 查所有key
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.i7baoz.cn/2018/01/01/mongodb/mongo-001/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="i7baoZ">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="积累">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/01/mongodb/mongo-001/" itemprop="url">mongodb-常用配置项、与关系型数据库的对比、命名规则</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-01T00:00:00+08:00">
-                2018-01-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>默认端口：27017<br>28017是web服务端口</p>
-<hr>
-<h3 id="常用配置项"><a href="#常用配置项" class="headerlink" title="常用配置项"></a>常用配置项</h3><p>–dbpath:指定数据库的目录<br>–port:指定端口<br>–fork：用守护线程的方式启动mongodb<br>–logpath：指定日志的输出路径<br>–auth：用安全认证的方式启动数据库</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/01/mongodb/mongo-001/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1051,7 +1107,7 @@ keys * : 查所有key
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
