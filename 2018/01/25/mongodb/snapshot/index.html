@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="本文中，大部分都在3.2后被注释掉了官方文档说明 快照的意义1234567891011125个文档，查询不做快照|①|②|③|④|⑤|当循环到第三个时，在③中加入了值，③的内存变大我们以为的是|①|②|③   ③   ③|④|⑤|实际上是|①|②|⑤|④|③   ③   ③|mongo会将数据重新变化，为③扩容 查询快照不做快照容易造成错误值快照后就会针对不变的集合进行游标运动1db.user.f">
+<meta name="description" content="本文中，大部分都在3.2后被注释掉了官方文档说明 快照的意义1234567891011125个文档，查询不做快照|①|②|③|④|⑤|当循环到第三个时，在③中加入了值，③的内存变大我们以为的是|①|②|③   ③   ③|④|⑤|实际上是|①|②|⑤|④|③   ③   ③|mongo会将数据重新变化，为③扩容">
 <meta name="keywords" content="mongodb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb-快照">
 <meta property="og:url" content="http://www.i7baoz.cn/2018/01/25/mongodb/snapshot/index.html">
 <meta property="og:site_name" content="积累">
-<meta property="og:description" content="本文中，大部分都在3.2后被注释掉了官方文档说明 快照的意义1234567891011125个文档，查询不做快照|①|②|③|④|⑤|当循环到第三个时，在③中加入了值，③的内存变大我们以为的是|①|②|③   ③   ③|④|⑤|实际上是|①|②|⑤|④|③   ③   ③|mongo会将数据重新变化，为③扩容 查询快照不做快照容易造成错误值快照后就会针对不变的集合进行游标运动1db.user.f">
+<meta property="og:description" content="本文中，大部分都在3.2后被注释掉了官方文档说明 快照的意义1234567891011125个文档，查询不做快照|①|②|③|④|⑤|当循环到第三个时，在③中加入了值，③的内存变大我们以为的是|①|②|③   ③   ③|④|⑤|实际上是|①|②|⑤|④|③   ③   ③|mongo会将数据重新变化，为③扩容">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-25T03:53:24.545Z">
+<meta property="og:updated_time" content="2018-02-06T00:50:21.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb-快照">
-<meta name="twitter:description" content="本文中，大部分都在3.2后被注释掉了官方文档说明 快照的意义1234567891011125个文档，查询不做快照|①|②|③|④|⑤|当循环到第三个时，在③中加入了值，③的内存变大我们以为的是|①|②|③   ③   ③|④|⑤|实际上是|①|②|⑤|④|③   ③   ③|mongo会将数据重新变化，为③扩容 查询快照不做快照容易造成错误值快照后就会针对不变的集合进行游标运动1db.user.f">
+<meta name="twitter:description" content="本文中，大部分都在3.2后被注释掉了官方文档说明 快照的意义1234567891011125个文档，查询不做快照|①|②|③|④|⑤|当循环到第三个时，在③中加入了值，③的内存变大我们以为的是|①|②|③   ③   ③|④|⑤|实际上是|①|②|⑤|④|③   ③   ③|mongo会将数据重新变化，为③扩容">
 
 
 
@@ -356,6 +356,7 @@
       
         <p><strong>本文中，大部分都在3.2后被注释掉了</strong><br><a href="https://docs.mongodb.com/manual/reference/operator/meta/query/" target="_blank" rel="noopener">官方文档说明</a></p>
 <h3 id="快照的意义"><a href="#快照的意义" class="headerlink" title="快照的意义"></a>快照的意义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">5个文档，查询不做快照</span><br><span class="line"></span><br><span class="line">|①|②|③|④|⑤|</span><br><span class="line"></span><br><span class="line">当循环到第三个时，在③中加入了值，③的内存变大</span><br><span class="line">我们以为的是</span><br><span class="line"></span><br><span class="line">|①|②|③   ③   ③|④|⑤|</span><br><span class="line">实际上是</span><br><span class="line">|①|②|⑤|④|③   ③   ③|</span><br><span class="line"></span><br><span class="line">mongo会将数据重新变化，为③扩容</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="查询快照"><a href="#查询快照" class="headerlink" title="查询快照"></a>查询快照</h3><p>不做快照容易造成错误值<br>快照后就会针对不变的集合进行游标运动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.user.find(&#123;$query:&#123;name:&apos;zhang&apos;&#125;,$snapshot:true&#125;)</span><br></pre></td></tr></table></figure></p>
 <h3 id="高级查询选项"><a href="#高级查询选项" class="headerlink" title="高级查询选项"></a>高级查询选项</h3><p>$query 查询<br>$orderby 排序<br>$maxscan: 最多扫描的文档<br>$min:doc 查询开始<br>$max:doc 查询结束<br>$hint:使用的索引<br>$explain:boolean 统计<br>$snapshot:boolean 快照</p>
 
@@ -398,8 +399,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/25/mongodb/index/" rel="prev" title="mongodb-索引">
-                mongodb-索引 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/06/git/NoValueForKeyException/" rel="prev" title="git+eclipse">
+                git+eclipse <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -481,7 +482,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -492,7 +493,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -503,7 +504,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
